@@ -3791,6 +3791,68 @@ Texture2D LoadTextureFromImage(Image image)
     return texture;
 }
 
+ArrayTexture LoadArrayTextureFromImages(Image* images, int num_images) {
+    ArrayTexture texture = { 0 };
+
+    if(num_images == 0) 
+        TRACELOG(LOG_ERROR, "ARRAYTEXTURE: cannot make an arraytexture of 0 depth");
+
+    texture.layers = num_images;
+    texture.width = images[0].width;
+    texture.height = images[0].height;
+    texture.format = images[0].format;
+
+    // verify that every image is within bounds...
+    for(size_t i = 0; i < num_images; i++) {
+        Image img = images[i];
+        
+        if(img.width == 0 || img.height == 0) {
+            TRACELOG(LOG_ERROR, "ARRAYTEXTURE: cannot load an image of size 0x0");
+        }
+
+        if(img.width != texture.width || img.height != texture.height) {
+            TRACELOG(LOG_ERROR, "ARRAYTEXTURE: textures cannot be of varying sizes");
+        }
+
+        if(img.format != texture.format) {
+            TRACELOG(LOG_ERROR, "ARRAYTEXTURE: textures must all be the same foromat");
+        }
+    }
+
+    // skrunch all of the data from the images into one huge
+    // block of data and throw it onto the gpu
+    char* data;
+    if(texture.format == PIXELFORMAT_UNCOMPRESSED_R8G8B8) {
+        const int image_size = texture.width * texture.height * 3;
+
+        data = MemAlloc(texture.width * texture.height * 3);
+
+        for(size_t i = 0; i < num_images; i++) 
+            memcpy(&data[image_size*i], images[i].data, image_size);
+        
+        texture.id = rlLoadTextureArray(data,
+                                        num_images,
+                                        texture.width,
+                                        texture.height,
+                                        PIXELFORMAT_UNCOMPRESSED_R8G8B8);
+    } else if(texture.format == PIXELFORMAT_UNCOMPRESSED_R8G8B8A8) {
+        const int image_size = texture.width * texture.height * 4;
+
+        data = MemAlloc(image_size * num_images);
+
+        for(size_t i = 0; i < num_images; i++) 
+            memcpy(&data[image_size*i], images[i].data, image_size);
+        
+        texture.id = rlLoadTextureArray(data,
+                                        num_images,
+                                        texture.width,
+                                        texture.height,
+                                        PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    } else TRACELOG(LOG_ERROR, "ARRAYTEXTURE: only supported texture types is RGB");
+
+    return texture;
+}
+
 // Load cubemap from image, multiple image cubemap layouts supported
 TextureCubemap LoadTextureCubemap(Image image, int layout)
 {

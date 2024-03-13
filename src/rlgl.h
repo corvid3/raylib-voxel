@@ -471,6 +471,7 @@ typedef enum {
     RL_SHADER_LOC_VERTEX_NORMAL,        // Shader location: vertex attribute: normal
     RL_SHADER_LOC_VERTEX_TANGENT,       // Shader location: vertex attribute: tangent
     RL_SHADER_LOC_VERTEX_COLOR,         // Shader location: vertex attribute: color
+    RL_SHADER_LOC_VERTEX_W,
     RL_SHADER_LOC_MATRIX_MVP,           // Shader location: matrix uniform: model-view-projection
     RL_SHADER_LOC_MATRIX_VIEW,          // Shader location: matrix uniform: view (camera transform)
     RL_SHADER_LOC_MATRIX_PROJECTION,    // Shader location: matrix uniform: projection
@@ -607,7 +608,9 @@ RLAPI void rlDisableStatePointer(int vertexAttribType); // Disable attribute sta
 // Textures state
 RLAPI void rlActiveTextureSlot(int slot);               // Select and active a texture slot
 RLAPI void rlEnableTexture(unsigned int id);            // Enable texture
+RLAPI void rlEnableArrayTexture(unsigned int id);
 RLAPI void rlDisableTexture(void);                      // Disable texture
+RLAPI void rlDisableArrayTexture(void);
 RLAPI void rlEnableTextureCubemap(unsigned int id);     // Enable texture cubemap
 RLAPI void rlDisableTextureCubemap(void);               // Disable texture cubemap
 RLAPI void rlTextureParameters(unsigned int id, int param, int value); // Set texture parameters (filter, wrap)
@@ -708,6 +711,7 @@ RLAPI void rlDrawVertexArrayElementsInstanced(int offset, int count, const void 
 RLAPI unsigned int rlLoadTexture(const void *data, int width, int height, int format, int mipmapCount); // Load texture data
 RLAPI unsigned int rlLoadTextureDepth(int width, int height, bool useRenderBuffer); // Load depth texture/renderbuffer (to be attached to fbo)
 RLAPI unsigned int rlLoadTextureCubemap(const void *data, int size, int format); // Load texture cubemap data
+RLAPI unsigned int rlLoadTextureArray(const void* data, int num_layers, int width, int height, int format);
 RLAPI void rlUpdateTexture(unsigned int id, int offsetX, int offsetY, int width, int height, int format, const void *data); // Update texture with new data on GPU
 RLAPI void rlGetGlTextureFormats(int format, unsigned int *glInternalFormat, unsigned int *glFormat, unsigned int *glType); // Get OpenGL internal formats
 RLAPI const char *rlGetPixelFormatName(unsigned int format);              // Get name string for pixel format
@@ -1584,6 +1588,10 @@ void rlEnableTexture(unsigned int id)
     glBindTexture(GL_TEXTURE_2D, id);
 }
 
+void rlEnableArrayTexture(unsigned int id) {
+  glBindTexture(GL_TEXTURE_2D_ARRAY, id);
+}
+
 // Disable texture
 void rlDisableTexture(void)
 {
@@ -1591,6 +1599,10 @@ void rlDisableTexture(void)
     glDisable(GL_TEXTURE_2D);
 #endif
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void rlDisableArrayTexture(void) {
+  glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
 }
 
 // Enable texture cubemap
@@ -2862,6 +2874,7 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
             // Setup some default shader values
             glUniform4f(RLGL.State.currentShaderLocs[RL_SHADER_LOC_COLOR_DIFFUSE], 1.0f, 1.0f, 1.0f, 1.0f);
             glUniform1i(RLGL.State.currentShaderLocs[RL_SHADER_LOC_MAP_DIFFUSE], 0);  // Active default sampler2D: texture0
+            
 
             // Activate additional sampler textures
             // Those additional textures will be common for all draw calls of the batch
@@ -3148,6 +3161,38 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
 
     if (id > 0) TRACELOG(RL_LOG_INFO, "TEXTURE: [ID %i] Texture loaded successfully (%ix%i | %s | %i mipmaps)", id, width, height, rlGetPixelFormatName(format), mipmapCount);
     else TRACELOG(RL_LOG_WARNING, "TEXTURE: Failed to load texture");
+
+    return id;
+}
+
+unsigned int rlLoadTextureArray(const void* data, int num_layers, int width, int height, int format) {
+    // just chill here for a bit while i work
+    const unsigned mip_level_count = 1;
+    unsigned int id = 0;   
+
+    // nuke any previously bound textures
+    glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+
+    glGenTextures(1, &id);
+    glBindTexture(GL_TEXTURE_2D_ARRAY, id);
+
+    if(format == PIXELFORMAT_UNCOMPRESSED_R8G8B8) {
+      glTexStorage3D(GL_TEXTURE_2D_ARRAY, mip_level_count, GL_RGB8, width, height, num_layers);
+      glTexSubImage3D(GL_TEXTURE_2D_ARRAY, 0, 0, 0, 0, width, height, num_layers, GL_RGB, GL_UNSIGNED_BYTE, data);
+    } else if(format == PIXELFORMAT_UNCOMPRESSED_R8G8B8A8) {
+      glTexStorage3D(GL_TEXTURE_2D_ARRAY, mip_level_count, GL_RGBA8, width, height, num_layers);
+      glTexSubImage3D(GL_TEXTURE_2D_ARRAY, 0, 0, 0, 0, width, height, num_layers, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    } else TRACELOG(LOG_ERROR, "ARRAYTEXTURE: only supported texture type is RGB");
+
+    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    if(id != 0) 
+      TRACELOG(LOG_INFO, "ARRAYTEXTURE: successully created arraytex");
+    else
+      TRACELOG(LOG_ERROR, "ARRAYTEXTURE: failed to create arraytexture");
 
     return id;
 }
@@ -4012,6 +4057,7 @@ unsigned int rlLoadShaderProgram(unsigned int vShaderId, unsigned int fShaderId)
     glBindAttribLocation(program, 3, RL_DEFAULT_SHADER_ATTRIB_NAME_COLOR);
     glBindAttribLocation(program, 4, RL_DEFAULT_SHADER_ATTRIB_NAME_TANGENT);
     glBindAttribLocation(program, 5, RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD2);
+    glBindAttribLocation(program, 6, RL_DEFAULT_SHADER_ATTRIB_NAME_TEXW);
 
     // NOTE: If some attrib name is no found on the shader, it locations becomes -1
 
@@ -4709,6 +4755,7 @@ static void rlLoadShaderDefault(void)
         RLGL.State.defaultShaderLocs[RL_SHADER_LOC_MATRIX_MVP]  = glGetUniformLocation(RLGL.State.defaultShaderId, "mvp");
         RLGL.State.defaultShaderLocs[RL_SHADER_LOC_COLOR_DIFFUSE] = glGetUniformLocation(RLGL.State.defaultShaderId, "colDiffuse");
         RLGL.State.defaultShaderLocs[RL_SHADER_LOC_MAP_DIFFUSE] = glGetUniformLocation(RLGL.State.defaultShaderId, "texture0");
+        
     }
     else TRACELOG(RL_LOG_WARNING, "SHADER: [ID %i] Failed to load default shader", RLGL.State.defaultShaderId);
 }

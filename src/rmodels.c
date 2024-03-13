@@ -1190,6 +1190,7 @@ void UploadMesh(Mesh *mesh, bool dynamic)
     mesh->vboId[4] = 0;     // Vertex buffer: tangents
     mesh->vboId[5] = 0;     // Vertex buffer: texcoords2
     mesh->vboId[6] = 0;     // Vertex buffer: indices
+    mesh->vboId[7] = 0;     // Vertex buffer: W coord
 
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     mesh->vaoId = rlLoadVertexArray();
@@ -1279,6 +1280,16 @@ void UploadMesh(Mesh *mesh, bool dynamic)
     if (mesh->indices != NULL)
     {
         mesh->vboId[6] = rlLoadVertexBufferElement(mesh->indices, mesh->triangleCount*3*sizeof(unsigned short), dynamic);
+    }
+
+    if(mesh->texcoordw != NULL) {
+        mesh->vboId[7] = rlLoadVertexBuffer(mesh->texcoordw, mesh->vertexCount * sizeof(float), dynamic);
+        rlSetVertexAttribute(RL_SHADER_LOC_VERTEX_W, 1, RL_FLOAT, 0, 0, 0);
+        rlEnableVertexAttribute(RL_SHADER_LOC_VERTEX_W);
+    } else {
+        float value[1] = {1};
+        rlSetVertexAttributeDefault(6, value, SHADER_ATTRIB_FLOAT, 1);
+        rlDisableVertexAttribute(6);
     }
 
     if (mesh->vaoId > 0) TRACELOG(LOG_INFO, "VAO: [ID %i] Mesh uploaded successfully to VRAM (GPU)", mesh->vaoId);
@@ -1390,10 +1401,17 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
     if (material.shader.locs[SHADER_LOC_MATRIX_NORMAL] != -1) rlSetUniformMatrix(material.shader.locs[SHADER_LOC_MATRIX_NORMAL], MatrixTranspose(MatrixInvert(matModel)));
     //-----------------------------------------------------
 
-    // Bind active texture maps (if available)
+    // Bind active texture & texture array maps (if available)
     for (int i = 0; i < MAX_MATERIAL_MAPS; i++)
     {
-        if (material.maps[i].texture.id > 0)
+        if(i == MATERIAL_MAP_ARRAYTEX) {
+            if(material.maps[i].array_texture.id > 0) {
+                rlActiveTextureSlot(i);
+                rlEnableArrayTexture(material.maps[i].array_texture.id);
+                rlSetUniform(material.shader.locs[SHADER_LOC_MAP_ARRAYTEX], &i, SHADER_UNIFORM_INT, 1);
+            }
+        } 
+        else if (material.maps[i].texture.id > 0)
         {
             // Select current shader texture slot
             rlActiveTextureSlot(i);
@@ -1468,6 +1486,13 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
         }
 
         if (mesh.indices != NULL) rlEnableVertexBufferElement(mesh.vboId[6]);
+
+        // Bind mesh VBO data: vertex W coord (shader-location = 6, if available)
+        if(material.shader.locs[SHADER_LOC_VERTEX_W] != -1) {
+            rlEnableVertexBuffer(mesh.vboId[7]);
+            rlSetVertexAttribute(material.shader.locs[SHADER_LOC_VERTEX_W], 1, RL_FLOAT, 0, 0, 0);
+            rlEnableVertexAttribute(material.shader.locs[SHADER_LOC_VERTEX_W]);
+        }
     }
 
     // WARNING: Disable vertex attribute color input if mesh can not provide that data (despite location being enabled in shader)
@@ -1499,6 +1524,9 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
     // Unbind all bound texture maps
     for (int i = 0; i < MAX_MATERIAL_MAPS; i++)
     {
+        if(i == MATERIAL_MAP_ARRAYTEX && material.maps[i].texture.id > 0)
+                rlDisableArrayTexture();
+        
         if (material.maps[i].texture.id > 0)
         {
             // Select current shader texture slot

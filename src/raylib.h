@@ -277,6 +277,16 @@ typedef Texture Texture2D;
 // TextureCubemap, same as Texture
 typedef Texture TextureCubemap;
 
+// ArrayTexture, array texture stored in GPU memory (VRAM)
+typedef struct ArrayTexture {
+    unsigned int id;        // OpenGL texture id
+    int width;
+    int height;
+    int layers;
+    int mipmaps;
+    int format;
+} ArrayTexture;
+
 // RenderTexture, fbo for texture rendering
 typedef struct RenderTexture {
     unsigned int id;        // OpenGL framebuffer object id
@@ -344,6 +354,7 @@ typedef struct Mesh {
     float *vertices;        // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
     float *texcoords;       // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
     float *texcoords2;      // Vertex texture second coordinates (UV - 2 components per vertex) (shader-location = 5)
+    float *texcoordw;       // Vertex texture W
     float *normals;         // Vertex normals (XYZ - 3 components per vertex) (shader-location = 2)
     float *tangents;        // Vertex tangents (XYZW - 4 components per vertex) (shader-location = 4)
     unsigned char *colors;      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
@@ -368,7 +379,11 @@ typedef struct Shader {
 
 // MaterialMap
 typedef struct MaterialMap {
+    bool use_texture_array;
+    ArrayTexture array_texture;
+
     Texture2D texture;      // Material map texture
+
     Color color;            // Material map color
     float value;            // Material map value
 } MaterialMap;
@@ -757,7 +772,8 @@ typedef enum {
     MATERIAL_MAP_CUBEMAP,           // Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
     MATERIAL_MAP_IRRADIANCE,        // Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
     MATERIAL_MAP_PREFILTER,         // Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-    MATERIAL_MAP_BRDF               // Brdf material
+    MATERIAL_MAP_BRDF,              // Brdf material
+    MATERIAL_MAP_ARRAYTEX,          // Array texture (NOTE: uses GL_TEXTURE_2D_ARRAY)
 } MaterialMapIndex;
 
 #define MATERIAL_MAP_DIFFUSE      MATERIAL_MAP_ALBEDO
@@ -771,6 +787,7 @@ typedef enum {
     SHADER_LOC_VERTEX_NORMAL,       // Shader location: vertex attribute: normal
     SHADER_LOC_VERTEX_TANGENT,      // Shader location: vertex attribute: tangent
     SHADER_LOC_VERTEX_COLOR,        // Shader location: vertex attribute: color
+    SHADER_LOC_VERTEX_W,            // Shader location: vertex attribute: W coord
     SHADER_LOC_MATRIX_MVP,          // Shader location: matrix uniform: model-view-projection
     SHADER_LOC_MATRIX_VIEW,         // Shader location: matrix uniform: view (camera transform)
     SHADER_LOC_MATRIX_PROJECTION,   // Shader location: matrix uniform: projection
@@ -790,7 +807,8 @@ typedef enum {
     SHADER_LOC_MAP_CUBEMAP,         // Shader location: samplerCube texture: cubemap
     SHADER_LOC_MAP_IRRADIANCE,      // Shader location: samplerCube texture: irradiance
     SHADER_LOC_MAP_PREFILTER,       // Shader location: samplerCube texture: prefilter
-    SHADER_LOC_MAP_BRDF             // Shader location: sampler2d texture: brdf
+    SHADER_LOC_MAP_BRDF,            // Shader location: sampler2d texture: brdf
+    SHADER_LOC_MAP_ARRAYTEX,        // Shader location: sampler2darray texture: Array texture
 } ShaderLocationIndex;
 
 #define SHADER_LOC_MAP_DIFFUSE      SHADER_LOC_MAP_ALBEDO
@@ -1394,6 +1412,9 @@ RLAPI bool IsRenderTextureReady(RenderTexture2D target);                        
 RLAPI void UnloadRenderTexture(RenderTexture2D target);                                                  // Unload render texture from GPU memory (VRAM)
 RLAPI void UpdateTexture(Texture2D texture, const void *pixels);                                         // Update GPU texture with new data
 RLAPI void UpdateTextureRec(Texture2D texture, Rectangle rec, const void *pixels);                       // Update GPU texture rectangle with new data
+
+// Texture array functions
+RLAPI ArrayTexture LoadArrayTextureFromImages(Image* images, int num_images);
 
 // Texture configuration functions
 RLAPI void GenTextureMipmaps(Texture2D *texture);                                                        // Generate GPU mipmaps for a texture
