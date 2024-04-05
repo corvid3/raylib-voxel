@@ -28,9 +28,9 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [shapes] example - colors palette");
 
     Color colors[MAX_COLORS_COUNT] = {
-        DARKGRAY, MAROON, ORANGE, DARKGREEN, DARKBLUE, DARKPURPLE, DARKBROWN,
-        GRAY, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK, YELLOW,
-        GREEN, SKYBLUE, PURPLE, BEIGE };
+        RL_DARKGRAY, RL_MAROON, RL_ORANGE, RL_DARKGREEN, RL_DARKBLUE, RL_DARKPURPLE, RL_DARKBROWN,
+        RL_GRAY, RL_RED, RL_GOLD, RL_LIME, RL_BLUE, RL_VIOLET, RL_BROWN, RL_LIGHTGRAY, RL_PINK, RL_YELLOW,
+        RL_GREEN, RL_SKYBLUE, RL_PURPLE, RL_BEIGE };
 
     const char *colorNames[MAX_COLORS_COUNT] = {
         "DARKGRAY", "MAROON", "ORANGE", "DARKGREEN", "DARKBLUE", "DARKPURPLE",
@@ -73,10 +73,10 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText("raylib colors palette", 28, 42, 20, BLACK);
-            DrawText("press SPACE to see all colors", GetScreenWidth() - 180, GetScreenHeight() - 40, 10, GRAY);
+            DrawText("raylib colors palette", 28, 42, 20, RL_BLACK);
+            DrawText("press SPACE to see all colors", GetScreenWidth() - 180, GetScreenHeight() - 40, 10, RL_GRAY);
 
             for (int i = 0; i < MAX_COLORS_COUNT; i++)    // Draw all rectangles
             {
@@ -84,8 +84,8 @@ int main(void)
 
                 if (IsKeyDown(KEY_SPACE) || colorState[i])
                 {
-                    DrawRectangle((int)colorsRecs[i].x, (int)(colorsRecs[i].y + colorsRecs[i].height - 26), (int)colorsRecs[i].width, 20, BLACK);
-                    DrawRectangleLinesEx(colorsRecs[i], 6, Fade(BLACK, 0.3f));
+                    DrawRectangle((int)colorsRecs[i].x, (int)(colorsRecs[i].y + colorsRecs[i].height - 26), (int)colorsRecs[i].width, 20, RL_BLACK);
+                    DrawRectangleLinesEx(colorsRecs[i], 6, Fade(RL_BLACK, 0.3f));
                     DrawText(colorNames[i], (int)(colorsRecs[i].x + colorsRecs[i].width - MeasureText(colorNames[i], 10) - 12),
                         (int)(colorsRecs[i].y + colorsRecs[i].height - 20), 10, colors[i]);
                 }

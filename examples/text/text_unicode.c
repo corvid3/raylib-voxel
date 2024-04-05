@@ -203,7 +203,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // Draw random emojis in the background
             //------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ int main(void)
 
                 if (!CheckCollisionPointRec(mouse, emojiRect))
                 {
-                    DrawTextEx(fontEmoji, txt, position, (float)fontEmoji.baseSize, 1.0f, selected == i ? emoji[i].color : Fade(LIGHTGRAY, 0.4f));
+                    DrawTextEx(fontEmoji, txt, position, (float)fontEmoji.baseSize, 1.0f, selected == i ? emoji[i].color : Fade(RL_LIGHTGRAY, 0.4f));
                 }
                 else
                 {
@@ -275,7 +275,7 @@ int main(void)
 
                 // Draw the main text message
                 Rectangle textRect = { msgRect.x + horizontalPadding/2, msgRect.y + verticalPadding/2, msgRect.width - horizontalPadding, msgRect.height };
-                DrawTextBoxed(*font, messages[message].text, textRect, (float)font->baseSize, 1.0f, true, WHITE);
+                DrawTextBoxed(*font, messages[message].text, textRect, (float)font->baseSize, 1.0f, true, RL_WHITE);
 
                 // Draw the info text below the main message
                 int size = (int)strlen(messages[message].text);
@@ -283,13 +283,13 @@ int main(void)
                 const char *info = TextFormat("%s %u characters %i bytes", messages[message].language, length, size);
                 sz = MeasureTextEx(GetFontDefault(), info, 10, 1.0f);
                 
-                DrawText(info, (int)(textRect.x + textRect.width - sz.x), (int)(msgRect.y + msgRect.height - sz.y - 2), 10, RAYWHITE);
+                DrawText(info, (int)(textRect.x + textRect.width - sz.x), (int)(msgRect.y + msgRect.height - sz.y - 2), 10, RL_RAYWHITE);
             }
             //------------------------------------------------------------------------------
 
             // Draw the info text
-            DrawText("These emojis have something to tell you, click each to find out!", (screenWidth - 650)/2, screenHeight - 40, 20, GRAY);
-            DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth - 484)/2, screenHeight - 16, 10, GRAY);
+            DrawText("These emojis have something to tell you, click each to find out!", (screenWidth - 650)/2, screenHeight - 40, 20, RL_GRAY);
+            DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth - 484)/2, screenHeight - 16, 10, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -333,7 +333,7 @@ static void RandomizeEmoji(void)
 // Draw text using font inside rectangle limits
 static void DrawTextBoxed(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
 {
-    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, WHITE, WHITE);
+    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, RL_WHITE, RL_WHITE);
 }
 
 // Draw text using font inside rectangle limits with support for text selection

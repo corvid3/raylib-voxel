@@ -60,11 +60,11 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawTexture(textures[currentTexture], screenWidth/2 - textures[currentTexture].width/2, screenHeight/2 - textures[currentTexture].height/2, WHITE);
+            DrawTexture(textures[currentTexture], screenWidth/2 - textures[currentTexture].width/2, screenHeight/2 - textures[currentTexture].height/2, RL_WHITE);
 
-            DrawText("Press LEFT MOUSE BUTTON to rotate the image clockwise", 250, 420, 10, DARKGRAY);
+            DrawText("Press LEFT MOUSE BUTTON to rotate the image clockwise", 250, 420, 10, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -55,11 +55,11 @@ int main(void)
     
     // Define environment elements (platforms)
     EnvElement envElements[MAX_ENVIRONMENT_ELEMENTS] = {
-        {{ 0, 0, 1000, 400 }, 0, LIGHTGRAY },
-        {{ 0, 400, 1000, 200 }, 1, GRAY },
-        {{ 300, 200, 400, 10 }, 1, GRAY },
-        {{ 250, 300, 100, 10 }, 1, GRAY },
-        {{ 650, 300, 100, 10 }, 1, GRAY }
+        {{ 0, 0, 1000, 400 }, 0, RL_LIGHTGRAY },
+        {{ 0, 400, 1000, 200 }, 1, RL_GRAY },
+        {{ 300, 200, 400, 10 }, 1, RL_GRAY },
+        {{ 250, 300, 100, 10 }, 1, RL_GRAY },
+        {{ 650, 300, 100, 10 }, 1, RL_GRAY }
     };
 
     // Define camera
@@ -275,7 +275,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(LIGHTGRAY);
+            ClearBackground(RL_LIGHTGRAY);
 
             BeginMode2D(camera);
 
@@ -286,38 +286,38 @@ int main(void)
                 }
 
                 // Draw player rectangle
-                DrawRectangleRec((Rectangle){ player.position.x - 20, player.position.y - 40, 40, 40 }, RED);
+                DrawRectangleRec((Rectangle){ player.position.x - 20, player.position.y - 40, 40, 40 }, RL_RED);
 
             EndMode2D();
             
             // Draw game controls
-            DrawRectangle(10, 10, 290, 145, Fade(SKYBLUE, 0.5f));
-            DrawRectangleLines(10, 10, 290, 145, Fade(BLUE, 0.8f));
+            DrawRectangle(10, 10, 290, 145, Fade(RL_SKYBLUE, 0.5f));
+            DrawRectangleLines(10, 10, 290, 145, Fade(RL_BLUE, 0.8f));
 
-            DrawText("Controls:", 20, 20, 10, BLACK);
-            DrawText("- RIGHT | LEFT: Player movement", 30, 40, 10, DARKGRAY);
-            DrawText("- SPACE: Player jump", 30, 60, 10, DARKGRAY);
-            DrawText("- R: Reset game state", 30, 80, 10, DARKGRAY);
+            DrawText("Controls:", 20, 20, 10, RL_BLACK);
+            DrawText("- RIGHT | LEFT: Player movement", 30, 40, 10, RL_DARKGRAY);
+            DrawText("- SPACE: Player jump", 30, 60, 10, RL_DARKGRAY);
+            DrawText("- R: Reset game state", 30, 80, 10, RL_DARKGRAY);
 
-            DrawText("- S: START/STOP RECORDING INPUT EVENTS", 30, 110, 10, BLACK);
-            DrawText("- A: REPLAY LAST RECORDED INPUT EVENTS", 30, 130, 10, BLACK);
+            DrawText("- S: START/STOP RECORDING INPUT EVENTS", 30, 110, 10, RL_BLACK);
+            DrawText("- A: REPLAY LAST RECORDED INPUT EVENTS", 30, 130, 10, RL_BLACK);
 
             // Draw automation events recording indicator
             if (eventRecording)
             {
-                DrawRectangle(10, 160, 290, 30, Fade(RED, 0.3f));
-                DrawRectangleLines(10, 160, 290, 30, Fade(MAROON, 0.8f));
-                DrawCircle(30, 175, 10, MAROON);
+                DrawRectangle(10, 160, 290, 30, Fade(RL_RED, 0.3f));
+                DrawRectangleLines(10, 160, 290, 30, Fade(RL_MAROON, 0.8f));
+                DrawCircle(30, 175, 10, RL_MAROON);
 
-                if (((frameCounter/15)%2) == 1) DrawText(TextFormat("RECORDING EVENTS... [%i]", aelist.count), 50, 170, 10, MAROON);
+                if (((frameCounter/15)%2) == 1) DrawText(TextFormat("RECORDING EVENTS... [%i]", aelist.count), 50, 170, 10, RL_MAROON);
             }
             else if (eventPlaying)
             {
-                DrawRectangle(10, 160, 290, 30, Fade(LIME, 0.3f));
-                DrawRectangleLines(10, 160, 290, 30, Fade(DARKGREEN, 0.8f));
-                DrawTriangle((Vector2){ 20, 155 + 10 }, (Vector2){ 20, 155 + 30 }, (Vector2){ 40, 155 + 20 }, DARKGREEN);
+                DrawRectangle(10, 160, 290, 30, Fade(RL_LIME, 0.3f));
+                DrawRectangleLines(10, 160, 290, 30, Fade(RL_DARKGREEN, 0.8f));
+                DrawTriangle((Vector2){ 20, 155 + 10 }, (Vector2){ 20, 155 + 30 }, (Vector2){ 40, 155 + 20 }, RL_DARKGREEN);
 
-                if (((frameCounter/15)%2) == 1) DrawText(TextFormat("PLAYING RECORDED EVENTS... [%i]", currentPlayFrame), 50, 170, 10, DARKGREEN);
+                if (((frameCounter/15)%2) == 1) DrawText(TextFormat("PLAYING RECORDED EVENTS... [%i]", currentPlayFrame), 50, 170, 10, RL_DARKGREEN);
             }
             
 

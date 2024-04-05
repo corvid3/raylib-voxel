@@ -75,10 +75,10 @@ int main(void)
 
     // Create lights
     Light lights[MAX_LIGHTS] = { 0 };
-    lights[0] = CreateLight(LIGHT_POINT, (Vector3){ -2, 1, -2 }, Vector3Zero(), YELLOW, shader);
-    lights[1] = CreateLight(LIGHT_POINT, (Vector3){ 2, 1, 2 }, Vector3Zero(), RED, shader);
-    lights[2] = CreateLight(LIGHT_POINT, (Vector3){ -2, 1, 2 }, Vector3Zero(), GREEN, shader);
-    lights[3] = CreateLight(LIGHT_POINT, (Vector3){ 2, 1, -2 }, Vector3Zero(), BLUE, shader);
+    lights[0] = CreateLight(LIGHT_POINT, (Vector3){ -2, 1, -2 }, Vector3Zero(), RL_YELLOW, shader);
+    lights[1] = CreateLight(LIGHT_POINT, (Vector3){ 2, 1, 2 }, Vector3Zero(), RL_RED, shader);
+    lights[2] = CreateLight(LIGHT_POINT, (Vector3){ -2, 1, 2 }, Vector3Zero(), RL_GREEN, shader);
+    lights[3] = CreateLight(LIGHT_POINT, (Vector3){ 2, 1, -2 }, Vector3Zero(), RL_BLUE, shader);
 
     SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -108,12 +108,12 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
-                DrawModel(model, Vector3Zero(), 1.0f, WHITE);
-                DrawModel(cube, Vector3Zero(), 1.0f, WHITE);
+                DrawModel(model, Vector3Zero(), 1.0f, RL_WHITE);
+                DrawModel(cube, Vector3Zero(), 1.0f, RL_WHITE);
 
                 // Draw spheres to show where the lights are
                 for (int i = 0; i < MAX_LIGHTS; i++)
@@ -128,7 +128,7 @@ int main(void)
 
             DrawFPS(10, 10);
 
-            DrawText("Use keys [Y][R][G][B] to toggle lights", 10, 40, 20, DARKGRAY);
+            DrawText("Use keys [Y][R][G][B] to toggle lights", 10, 40, 20, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

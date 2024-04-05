@@ -107,10 +107,10 @@ int main(void)
 
 	// Create lights
 	Light lights[MAX_LIGHTS] = { 0 };
-	lights[0] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, -20 }, Vector3Zero(), GRAY, shader);
-	lights[1] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, 20 }, Vector3Zero(), GRAY, shader);
-	lights[2] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, 20 }, Vector3Zero(), GRAY, shader);
-	lights[3] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, -20 }, Vector3Zero(), GRAY, shader);
+	lights[0] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, -20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[1] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, 20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[2] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, 20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[3] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, -20 }, Vector3Zero(), RL_GRAY, shader);
 
 
 	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -162,12 +162,12 @@ int main(void)
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(RL_RAYWHITE);
 
 		// Draw 3D model
 		BeginMode3D(camera);
 
-		DrawModel(models[currentModel], modelpos, 1.0f, WHITE);
+		DrawModel(models[currentModel], modelpos, 1.0f, RL_WHITE);
 		DrawGrid(10, 1.0);
 
 		// Draw spheres to show where the lights are
@@ -180,12 +180,12 @@ int main(void)
 		EndMode3D();
 
 		// Display info
-		DrawRectangle(10, 400, 340, 60, Fade(SKYBLUE, 0.5f));
-		DrawRectangleLines(10, 400, 340, 60, Fade(DARKBLUE, 0.5f));
-		DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, BLUE);
-		DrawText("MOUSE MIDDLE BUTTON to ZOOM OR ROTATE CAMERA", 40, 420, 10, BLUE);
-		DrawText("UP-DOWN-LEFT-RIGHT KEYS to MOVE CAMERA", 40, 430, 10, BLUE);
-		DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, GRAY);
+		DrawRectangle(10, 400, 340, 60, Fade(RL_SKYBLUE, 0.5f));
+		DrawRectangleLines(10, 400, 340, 60, Fade(RL_DARKBLUE, 0.5f));
+		DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, RL_BLUE);
+		DrawText("MOUSE MIDDLE BUTTON to ZOOM OR ROTATE CAMERA", 40, 420, 10, RL_BLUE);
+		DrawText("UP-DOWN-LEFT-RIGHT KEYS to MOVE CAMERA", 40, 430, 10, RL_BLUE);
+		DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, RL_GRAY);
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------

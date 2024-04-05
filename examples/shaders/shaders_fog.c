@@ -83,7 +83,7 @@ int main(void)
     modelC.materials[0].shader = shader;
 
     // Using just 1 point lights
-    CreateLight(LIGHT_POINT, (Vector3){ 0, 2, 6 }, Vector3Zero(), WHITE, shader);
+    CreateLight(LIGHT_POINT, (Vector3){ 0, 2, 6 }, Vector3Zero(), RL_WHITE, shader);
 
     SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -121,20 +121,20 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(GRAY);
+            ClearBackground(RL_GRAY);
 
             BeginMode3D(camera);
 
                 // Draw the three models
-                DrawModel(modelA, Vector3Zero(), 1.0f, WHITE);
-                DrawModel(modelB, (Vector3){ -2.6f, 0, 0 }, 1.0f, WHITE);
-                DrawModel(modelC, (Vector3){ 2.6f, 0, 0 }, 1.0f, WHITE);
+                DrawModel(modelA, Vector3Zero(), 1.0f, RL_WHITE);
+                DrawModel(modelB, (Vector3){ -2.6f, 0, 0 }, 1.0f, RL_WHITE);
+                DrawModel(modelC, (Vector3){ 2.6f, 0, 0 }, 1.0f, RL_WHITE);
 
-                for (int i = -20; i < 20; i += 2) DrawModel(modelA,(Vector3){ (float)i, 0, 2 }, 1.0f, WHITE);
+                for (int i = -20; i < 20; i += 2) DrawModel(modelA,(Vector3){ (float)i, 0, 2 }, 1.0f, RL_WHITE);
 
             EndMode3D();
 
-            DrawText(TextFormat("Use KEY_UP/KEY_DOWN to change fog density [%.2f]", fogDensity), 10, 10, 20, RAYWHITE);
+            DrawText(TextFormat("Use KEY_UP/KEY_DOWN to change fog density [%.2f]", fogDensity), 10, 10, 20, RL_RAYWHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

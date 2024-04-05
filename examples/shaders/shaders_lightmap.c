@@ -93,7 +93,7 @@ int main(void)
 
     // Drawing to lightmap
     BeginTextureMode(lightmap);
-        ClearBackground(BLACK);
+        ClearBackground(RL_BLACK);
 
         BeginBlendMode(BLEND_ADDITIVE);
             DrawTexturePro(
@@ -102,7 +102,7 @@ int main(void)
                 (Rectangle){ 0, 0, 20, 20 },
                 (Vector2){ 10.0, 10.0 },
                 0.0,
-                RED
+                RL_RED
             );
             DrawTexturePro(
                 light,
@@ -110,7 +110,7 @@ int main(void)
                 (Rectangle){ 8, 4, 20, 20 },
                 (Vector2){ 10.0, 10.0 },
                 0.0,
-                BLUE
+                RL_BLUE
             );
             DrawTexturePro(
                 light,
@@ -118,7 +118,7 @@ int main(void)
                 (Rectangle){ 8, 8, 10, 10 },
                 (Vector2){ 5.0, 5.0 },
                 0.0,
-                GREEN
+                RL_GREEN
             );
         BeginBlendMode(BLEND_ALPHA);
     EndTextureMode();
@@ -137,7 +137,7 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
                 DrawMesh(mesh, material, MatrixIdentity());
@@ -151,10 +151,10 @@ int main(void)
                 (Rectangle){ GetRenderWidth() - MAP_SIZE*8 - 10, 10, MAP_SIZE*8, MAP_SIZE*8 },
                 (Vector2){ 0.0, 0.0 },
                 0.0,
-                WHITE);
+                RL_WHITE);
                 
-            DrawText("lightmap", GetRenderWidth() - 66, 16 + MAP_SIZE*8, 10, GRAY);
-            DrawText("10x10 pixels", GetRenderWidth() - 76, 30 + MAP_SIZE*8, 10, GRAY);
+            DrawText("lightmap", GetRenderWidth() - 66, 16 + MAP_SIZE*8, 10, RL_GRAY);
+            DrawText("10x10 pixels", GetRenderWidth() - 76, 30 + MAP_SIZE*8, 10, RL_GRAY);
                 
         EndDrawing();
         //----------------------------------------------------------------------------------

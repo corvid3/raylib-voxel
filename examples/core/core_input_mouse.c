@@ -26,7 +26,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input");
 
     Vector2 ballPosition = { -100.0f, -100.0f };
-    Color ballColor = DARKBLUE;
+    Color ballColor = RL_DARKBLUE;
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //---------------------------------------------------------------------------------------
@@ -38,24 +38,24 @@ int main(void)
         //----------------------------------------------------------------------------------
         ballPosition = GetMousePosition();
 
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ballColor = MAROON;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE)) ballColor = LIME;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) ballColor = DARKBLUE;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE)) ballColor = PURPLE;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA)) ballColor = YELLOW;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD)) ballColor = ORANGE;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK)) ballColor = BEIGE;
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ballColor = RL_MAROON;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE)) ballColor = RL_LIME;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) ballColor = RL_DARKBLUE;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE)) ballColor = RL_PURPLE;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA)) ballColor = RL_YELLOW;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD)) ballColor = RL_ORANGE;
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK)) ballColor = RL_BEIGE;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             DrawCircleV(ballPosition, 40, ballColor);
 
-            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, DARKGRAY);
+            DrawText("move ball with mouse and click mouse button to change color", 10, 10, 20, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

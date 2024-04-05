@@ -76,17 +76,17 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
-                DrawModel(model, position, 1.0f, WHITE);    // Draw animated model
+                DrawModel(model, position, 1.0f, RL_WHITE);    // Draw animated model
                 DrawGrid(10, 1.0f);
 
             EndMode3D();
 
-            DrawText("Use the LEFT/RIGHT mouse buttons to switch animation", 10, 10, 20, GRAY);
-            DrawText(TextFormat("Animation: %s", anim.name), 10, GetScreenHeight() - 20, 10, DARKGRAY);
+            DrawText("Use the LEFT/RIGHT mouse buttons to switch animation", 10, 10, 20, RL_GRAY);
+            DrawText(TextFormat("Animation: %s", anim.name), 10, GetScreenHeight() - 20, 10, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

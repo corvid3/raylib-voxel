@@ -80,20 +80,20 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            for (int i = 0; i < GetScreenWidth()/200; i++) DrawRectangle(200*i, 0, 1, GetScreenHeight(), SKYBLUE);
+            for (int i = 0; i < GetScreenWidth()/200; i++) DrawRectangle(200*i, 0, 1, GetScreenHeight(), RL_SKYBLUE);
             
-            DrawCircle((int)position, GetScreenHeight()/2 - 25, 50, RED);
+            DrawCircle((int)position, GetScreenHeight()/2 - 25, 50, RL_RED);
             
-            DrawText(TextFormat("%03.0f ms", timeCounter*1000.0f), (int)position - 40, GetScreenHeight()/2 - 100, 20, MAROON);
-            DrawText(TextFormat("PosX: %03.0f", position), (int)position - 50, GetScreenHeight()/2 + 40, 20, BLACK);
+            DrawText(TextFormat("%03.0f ms", timeCounter*1000.0f), (int)position - 40, GetScreenHeight()/2 - 100, 20, RL_MAROON);
+            DrawText(TextFormat("PosX: %03.0f", position), (int)position - 50, GetScreenHeight()/2 + 40, 20, RL_BLACK);
             
-            DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, DARKGRAY);
-            DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, GRAY);
-            DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, GRAY);
-            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, LIME);
-            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f/deltaTime)), GetScreenWidth() - 220, 40, 20, GREEN);
+            DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, RL_DARKGRAY);
+            DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, RL_GRAY);
+            DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, RL_GRAY);
+            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, RL_LIME);
+            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f/deltaTime)), GetScreenWidth() - 220, 40, 20, RL_GREEN);
 
         EndDrawing();
 

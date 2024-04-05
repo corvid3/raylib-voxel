@@ -107,18 +107,18 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // We only draw a white full-screen rectangle, frame is generated in shader
             BeginShaderMode(shader);
-                DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+                DrawRectangle(0, 0, screenWidth, screenHeight, RL_WHITE);
             EndShaderMode();
 
             DrawText(TextFormat("PRESS [A] to TOGGLE SHADER AUTOLOADING: %s",
-                     shaderAutoReloading? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading? RED : BLACK);
-            if (!shaderAutoReloading) DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, BLACK);
+                     shaderAutoReloading? "AUTO" : "MANUAL"), 10, 10, 10, shaderAutoReloading? RL_RED : RL_BLACK);
+            if (!shaderAutoReloading) DrawText("MOUSE CLICK to SHADER RE-LOADING", 10, 30, 10, RL_BLACK);
 
-            DrawText(TextFormat("Shader last modification: %s", asctime(localtime(&fragShaderFileModTime))), 10, 430, 10, BLACK);
+            DrawText(TextFormat("Shader last modification: %s", asctime(localtime(&fragShaderFileModTime))), 10, 430, 10, RL_BLACK);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

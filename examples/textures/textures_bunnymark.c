@@ -89,7 +89,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             for (int i = 0; i < bunniesCount; i++)
             {
@@ -102,9 +102,9 @@ int main(void)
                 DrawTexture(texBunny, (int)bunnies[i].position.x, (int)bunnies[i].position.y, bunnies[i].color);
             }
 
-            DrawRectangle(0, 0, screenWidth, 40, BLACK);
-            DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, GREEN);
-            DrawText(TextFormat("batched draw calls: %i", 1 + bunniesCount/MAX_BATCH_ELEMENTS), 320, 10, 20, MAROON);
+            DrawRectangle(0, 0, screenWidth, 40, RL_BLACK);
+            DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, RL_GREEN);
+            DrawText(TextFormat("batched draw calls: %i", 1 + bunniesCount/MAX_BATCH_ELEMENTS), 320, 10, 20, RL_MAROON);
 
             DrawFPS(10, 10);
 

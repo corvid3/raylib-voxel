@@ -95,70 +95,70 @@ int main(void)
         //----------------------------------------------------------------------------------
         // Draw Player1 view to the render texture
         BeginTextureMode(screenPlayer1);
-            ClearBackground(SKYBLUE);
+            ClearBackground(RL_SKYBLUE);
             
             BeginMode3D(cameraPlayer1);
             
                 // Draw scene: grid of cube trees on a plane to make a "world"
-                DrawPlane((Vector3){ 0, 0, 0 }, (Vector2){ 50, 50 }, BEIGE); // Simple world plane
+                DrawPlane((Vector3){ 0, 0, 0 }, (Vector2){ 50, 50 }, RL_BEIGE); // Simple world plane
 
                 for (float x = -count*spacing; x <= count*spacing; x += spacing)
                 {
                     for (float z = -count*spacing; z <= count*spacing; z += spacing)
                     {
-                        DrawCube((Vector3) { x, 1.5f, z }, 1, 1, 1, LIME);
-                        DrawCube((Vector3) { x, 0.5f, z }, 0.25f, 1, 0.25f, BROWN);
+                        DrawCube((Vector3) { x, 1.5f, z }, 1, 1, 1, RL_LIME);
+                        DrawCube((Vector3) { x, 0.5f, z }, 0.25f, 1, 0.25f, RL_BROWN);
                     }
                 }
 
                 // Draw a cube at each player's position
-                DrawCube(cameraPlayer1.position, 1, 1, 1, RED);
-                DrawCube(cameraPlayer2.position, 1, 1, 1, BLUE);
+                DrawCube(cameraPlayer1.position, 1, 1, 1, RL_RED);
+                DrawCube(cameraPlayer2.position, 1, 1, 1, RL_BLUE);
                 
             EndMode3D();
             
-            DrawRectangle(0, 0, GetScreenWidth()/2, 40, Fade(RAYWHITE, 0.8f));
-            DrawText("PLAYER1: W/S to move", 10, 10, 20, MAROON);
+            DrawRectangle(0, 0, GetScreenWidth()/2, 40, Fade(RL_RAYWHITE, 0.8f));
+            DrawText("PLAYER1: W/S to move", 10, 10, 20, RL_MAROON);
             
         EndTextureMode();
 
         // Draw Player2 view to the render texture
         BeginTextureMode(screenPlayer2);
-            ClearBackground(SKYBLUE);
+            ClearBackground(RL_SKYBLUE);
             
             BeginMode3D(cameraPlayer2);
             
                 // Draw scene: grid of cube trees on a plane to make a "world"
-                DrawPlane((Vector3){ 0, 0, 0 }, (Vector2){ 50, 50 }, BEIGE); // Simple world plane
+                DrawPlane((Vector3){ 0, 0, 0 }, (Vector2){ 50, 50 }, RL_BEIGE); // Simple world plane
 
                 for (float x = -count*spacing; x <= count*spacing; x += spacing)
                 {
                     for (float z = -count*spacing; z <= count*spacing; z += spacing)
                     {
-                        DrawCube((Vector3) { x, 1.5f, z }, 1, 1, 1, LIME);
-                        DrawCube((Vector3) { x, 0.5f, z }, 0.25f, 1, 0.25f, BROWN);
+                        DrawCube((Vector3) { x, 1.5f, z }, 1, 1, 1, RL_LIME);
+                        DrawCube((Vector3) { x, 0.5f, z }, 0.25f, 1, 0.25f, RL_BROWN);
                     }
                 }
 
                 // Draw a cube at each player's position
-                DrawCube(cameraPlayer1.position, 1, 1, 1, RED);
-                DrawCube(cameraPlayer2.position, 1, 1, 1, BLUE);
+                DrawCube(cameraPlayer1.position, 1, 1, 1, RL_RED);
+                DrawCube(cameraPlayer2.position, 1, 1, 1, RL_BLUE);
                 
             EndMode3D();
             
-            DrawRectangle(0, 0, GetScreenWidth()/2, 40, Fade(RAYWHITE, 0.8f));
-            DrawText("PLAYER2: UP/DOWN to move", 10, 10, 20, DARKBLUE);
+            DrawRectangle(0, 0, GetScreenWidth()/2, 40, Fade(RL_RAYWHITE, 0.8f));
+            DrawText("PLAYER2: UP/DOWN to move", 10, 10, 20, RL_DARKBLUE);
             
         EndTextureMode();
 
         // Draw both views render textures to the screen side by side
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(RL_BLACK);
             
-            DrawTextureRec(screenPlayer1.texture, splitScreenRect, (Vector2){ 0, 0 }, WHITE);
-            DrawTextureRec(screenPlayer2.texture, splitScreenRect, (Vector2){ screenWidth/2.0f, 0 }, WHITE);
+            DrawTextureRec(screenPlayer1.texture, splitScreenRect, (Vector2){ 0, 0 }, RL_WHITE);
+            DrawTextureRec(screenPlayer2.texture, splitScreenRect, (Vector2){ screenWidth/2.0f, 0 }, RL_WHITE);
             
-            DrawRectangle(GetScreenWidth()/2 - 2, 0, 4, GetScreenHeight(), LIGHTGRAY);
+            DrawRectangle(GetScreenWidth()/2 - 2, 0, 4, GetScreenHeight(), RL_LIGHTGRAY);
         EndDrawing();
     }
 

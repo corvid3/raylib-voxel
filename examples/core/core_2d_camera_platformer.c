@@ -59,11 +59,11 @@ int main(void)
     player.speed = 0;
     player.canJump = false;
     EnvItem envItems[] = {
-        {{ 0, 0, 1000, 400 }, 0, LIGHTGRAY },
-        {{ 0, 400, 1000, 200 }, 1, GRAY },
-        {{ 300, 200, 400, 10 }, 1, GRAY },
-        {{ 250, 300, 100, 10 }, 1, GRAY },
-        {{ 650, 300, 100, 10 }, 1, GRAY }
+        {{ 0, 0, 1000, 400 }, 0, RL_LIGHTGRAY },
+        {{ 0, 400, 1000, 200 }, 1, RL_GRAY },
+        {{ 300, 200, 400, 10 }, 1, RL_GRAY },
+        {{ 250, 300, 100, 10 }, 1, RL_GRAY },
+        {{ 650, 300, 100, 10 }, 1, RL_GRAY }
     };
 
     int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
@@ -127,26 +127,26 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(LIGHTGRAY);
+            ClearBackground(RL_LIGHTGRAY);
 
             BeginMode2D(camera);
 
                 for (int i = 0; i < envItemsLength; i++) DrawRectangleRec(envItems[i].rect, envItems[i].color);
 
                 Rectangle playerRect = { player.position.x - 20, player.position.y - 40, 40, 40 };
-                DrawRectangleRec(playerRect, RED);
+                DrawRectangleRec(playerRect, RL_RED);
                 
-                DrawCircle(player.position.x, player.position.y, 5, GOLD);
+                DrawCircle(player.position.x, player.position.y, 5, RL_GOLD);
 
             EndMode2D();
 
-            DrawText("Controls:", 20, 20, 10, BLACK);
-            DrawText("- Right/Left to move", 40, 40, 10, DARKGRAY);
-            DrawText("- Space to jump", 40, 60, 10, DARKGRAY);
-            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, DARKGRAY);
-            DrawText("- C to change camera mode", 40, 100, 10, DARKGRAY);
-            DrawText("Current camera mode:", 20, 120, 10, BLACK);
-            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, DARKGRAY);
+            DrawText("Controls:", 20, 20, 10, RL_BLACK);
+            DrawText("- Right/Left to move", 40, 40, 10, RL_DARKGRAY);
+            DrawText("- Space to jump", 40, 60, 10, RL_DARKGRAY);
+            DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, RL_DARKGRAY);
+            DrawText("- C to change camera mode", 40, 100, 10, RL_DARKGRAY);
+            DrawText("Current camera mode:", 20, 120, 10, RL_BLACK);
+            DrawText(cameraDescriptions[cameraOption], 40, 140, 10, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

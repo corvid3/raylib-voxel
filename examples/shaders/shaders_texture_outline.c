@@ -41,7 +41,7 @@ int main(void)
     Shader shdrOutline = LoadShader(0, TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
 
     float outlineSize = 2.0f;
-    float outlineColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };     // Normalized RED color
+    float outlineColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };     // Normalized RL_RED color
     float textureSize[2] = { (float)texture.width, (float)texture.height };
 
     // Get shader locations
@@ -72,17 +72,17 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginShaderMode(shdrOutline);
 
-                DrawTexture(texture, GetScreenWidth()/2 - texture.width/2, -30, WHITE);
+                DrawTexture(texture, GetScreenWidth()/2 - texture.width/2, -30, RL_WHITE);
 
             EndShaderMode();
 
-            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, GRAY);
-            DrawText("Scroll mouse wheel to\nchange outline size", 10, 72, 20, GRAY);
-            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, MAROON);
+            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, RL_GRAY);
+            DrawText("Scroll mouse wheel to\nchange outline size", 10, 72, 20, RL_GRAY);
+            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, RL_MAROON);
 
             DrawFPS(710, 10);
 

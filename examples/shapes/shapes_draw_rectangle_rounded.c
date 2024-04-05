@@ -55,14 +55,14 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawLine(560, 0, 560, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            DrawLine(560, 0, 560, GetScreenHeight(), Fade(RL_LIGHTGRAY, 0.6f));
+            DrawRectangle(560, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(RL_LIGHTGRAY, 0.3f));
 
-            if (drawRect) DrawRectangleRec(rec, Fade(GOLD, 0.6f));
-            if (drawRoundedRect) DrawRectangleRounded(rec, roundness, (int)segments, Fade(MAROON, 0.2f));
-            if (drawRoundedLines) DrawRectangleRoundedLines(rec, roundness, (int)segments, lineThick, Fade(MAROON, 0.4f));
+            if (drawRect) DrawRectangleRec(rec, Fade(RL_GOLD, 0.6f));
+            if (drawRoundedRect) DrawRectangleRounded(rec, roundness, (int)segments, Fade(RL_MAROON, 0.2f));
+            if (drawRoundedLines) DrawRectangleRoundedLines(rec, roundness, (int)segments, lineThick, Fade(RL_MAROON, 0.4f));
 
             // Draw GUI controls
             //------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ int main(void)
             GuiCheckBox((Rectangle){ 640, 380, 20, 20}, "DrawRect", &drawRect);
             //------------------------------------------------------------------------------
 
-            DrawText(TextFormat("MODE: %s", (segments >= 4)? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4)? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= 4)? "MANUAL" : "AUTO"), 640, 280, 10, (segments >= 4)? RL_MAROON : RL_DARKGRAY);
 
             DrawFPS(10, 10);
 

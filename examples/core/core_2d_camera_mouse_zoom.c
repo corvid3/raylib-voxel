@@ -74,7 +74,7 @@ int main ()
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(RL_BLACK);
 
             BeginMode2D(camera);
 
@@ -87,11 +87,11 @@ int main ()
                 rlPopMatrix();
 
                 // Draw a reference circle
-                DrawCircle(100, 100, 50, YELLOW);
+                DrawCircle(100, 100, 50, RL_YELLOW);
                 
             EndMode2D();
 
-            DrawText("Mouse right button drag to move, mouse wheel to zoom", 10, 10, 20, WHITE);
+            DrawText("Mouse right button drag to move, mouse wheel to zoom", 10, 10, 20, RL_WHITE);
         
         EndDrawing();
         //----------------------------------------------------------------------------------

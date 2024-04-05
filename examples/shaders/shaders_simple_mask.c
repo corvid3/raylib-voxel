@@ -112,19 +112,19 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(DARKBLUE);
+            ClearBackground(RL_DARKBLUE);
 
             BeginMode3D(camera);
 
-                DrawModel(model1, (Vector3){ 0.5f, 0.0f, 0.0f }, 1, WHITE);
-                DrawModelEx(model2, (Vector3){ -0.5f, 0.0f, 0.0f }, (Vector3){ 1.0f, 1.0f, 0.0f }, 50, (Vector3){ 1.0f, 1.0f, 1.0f }, WHITE);
-                DrawModel(model3,(Vector3){ 0.0f, 0.0f, -1.5f }, 1, WHITE);
+                DrawModel(model1, (Vector3){ 0.5f, 0.0f, 0.0f }, 1, RL_WHITE);
+                DrawModelEx(model2, (Vector3){ -0.5f, 0.0f, 0.0f }, (Vector3){ 1.0f, 1.0f, 0.0f }, 50, (Vector3){ 1.0f, 1.0f, 1.0f }, RL_WHITE);
+                DrawModel(model3,(Vector3){ 0.0f, 0.0f, -1.5f }, 1, RL_WHITE);
                 DrawGrid(10, 1.0f);        // Draw a grid
 
             EndMode3D();
 
-            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, BLUE);
-            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, WHITE);
+            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, RL_BLUE);
+            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, RL_WHITE);
 
             DrawFPS(10, 10);
 

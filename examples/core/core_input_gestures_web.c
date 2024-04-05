@@ -64,18 +64,18 @@ char const *GetGestureName(int i)
 Color GetGestureColor(int i)
 {
    switch (i)  {
-      case 0:   return BLACK;   break;
-      case 1:   return BLUE;    break;
-      case 2:   return SKYBLUE; break;
-      case 4:   return BLACK;   break;
-      case 8:   return LIME;    break;
-      case 16:  return RED;     break;
-      case 32:  return RED;     break;
-      case 64:  return RED;     break;
-      case 128: return RED;     break;
-      case 256: return VIOLET;  break;
-      case 512: return ORANGE;  break;
-      default:  return BLACK;   break;
+      case 0:   return RL_BLACK;   break;
+      case 1:   return RL_BLUE;    break;
+      case 2:   return RL_SKYBLUE; break;
+      case 4:   return RL_BLACK;   break;
+      case 8:   return RL_LIME;    break;
+      case 16:  return RL_RED;     break;
+      case 32:  return RL_RED;     break;
+      case 64:  return RL_RED;     break;
+      case 128: return RL_RED;     break;
+      case 256: return RL_VIOLET;  break;
+      case 512: return RL_ORANGE;  break;
+      default:  return RL_BLACK;   break;
    }
 }
 
@@ -205,74 +205,74 @@ void Update(void)
     //--------------------------------------------------------------------------------------
     BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(RL_RAYWHITE);
 
         // Draw common
         //--------------------------------------------------------------------------------------
-        DrawText("*", messagePosition.x + 5, messagePosition.y + 5, 10, BLACK);
-        DrawText("Example optimized for Web/HTML5\non Smartphones with Touch Screen.", messagePosition.x + 15, messagePosition.y + 5, 10, BLACK);
-        DrawText("*", messagePosition.x + 5, messagePosition.y + 35, 10, BLACK);
-        DrawText("While running on Desktop Web Browsers,\ninspect and turn on Touch Emulation.", messagePosition.x + 15,  messagePosition.y + 35, 10, BLACK);
+        DrawText("*", messagePosition.x + 5, messagePosition.y + 5, 10, RL_BLACK);
+        DrawText("Example optimized for Web/HTML5\non Smartphones with Touch Screen.", messagePosition.x + 15, messagePosition.y + 5, 10, RL_BLACK);
+        DrawText("*", messagePosition.x + 5, messagePosition.y + 35, 10, RL_BLACK);
+        DrawText("While running on Desktop Web Browsers,\ninspect and turn on Touch Emulation.", messagePosition.x + 15,  messagePosition.y + 35, 10, RL_BLACK);
 
         // Draw last gesture
         //--------------------------------------------------------------------------------------
-        DrawText("Last gesture", lastGesturePosition.x + 33, lastGesturePosition.y - 47, 20, BLACK);
-        DrawText("Swipe         Tap       Pinch  Touch", lastGesturePosition.x + 17, lastGesturePosition.y - 18, 10, BLACK);
-        DrawRectangle(lastGesturePosition.x + 20, lastGesturePosition.y, 20, 20, lastGesture == GESTURE_SWIPE_UP ? RED : LIGHTGRAY);
-        DrawRectangle(lastGesturePosition.x, lastGesturePosition.y + 20, 20, 20, lastGesture == GESTURE_SWIPE_LEFT ? RED : LIGHTGRAY);
-        DrawRectangle(lastGesturePosition.x + 40, lastGesturePosition.y + 20, 20, 20, lastGesture == GESTURE_SWIPE_RIGHT ? RED : LIGHTGRAY);
-        DrawRectangle(lastGesturePosition.x + 20, lastGesturePosition.y + 40, 20, 20, lastGesture == GESTURE_SWIPE_DOWN ? RED : LIGHTGRAY);
-        DrawCircle(lastGesturePosition.x + 80, lastGesturePosition.y + 16, 10, lastGesture == GESTURE_TAP ? BLUE : LIGHTGRAY);
-        DrawRing( (Vector2){lastGesturePosition.x + 103, lastGesturePosition.y + 16}, 6.0f, 11.0f, 0.0f, 360.0f, 0, lastGesture == GESTURE_DRAG ? LIME : LIGHTGRAY);
-        DrawCircle(lastGesturePosition.x + 80, lastGesturePosition.y + 43, 10, lastGesture == GESTURE_DOUBLETAP ? SKYBLUE : LIGHTGRAY);
-        DrawCircle(lastGesturePosition.x + 103, lastGesturePosition.y + 43, 10, lastGesture == GESTURE_DOUBLETAP ? SKYBLUE : LIGHTGRAY);
-        DrawTriangle((Vector2){ lastGesturePosition.x + 122, lastGesturePosition.y + 16 }, (Vector2){ lastGesturePosition.x + 137, lastGesturePosition.y + 26 }, (Vector2){ lastGesturePosition.x + 137, lastGesturePosition.y + 6 }, lastGesture == GESTURE_PINCH_OUT? ORANGE : LIGHTGRAY);
-        DrawTriangle((Vector2){ lastGesturePosition.x + 147, lastGesturePosition.y + 6 }, (Vector2){ lastGesturePosition.x + 147, lastGesturePosition.y + 26 }, (Vector2){ lastGesturePosition.x + 162, lastGesturePosition.y + 16 }, lastGesture == GESTURE_PINCH_OUT? ORANGE : LIGHTGRAY);
-        DrawTriangle((Vector2){ lastGesturePosition.x + 125, lastGesturePosition.y + 33 }, (Vector2){ lastGesturePosition.x + 125, lastGesturePosition.y + 53 }, (Vector2){ lastGesturePosition.x + 140, lastGesturePosition.y + 43 }, lastGesture == GESTURE_PINCH_IN? VIOLET : LIGHTGRAY);
-        DrawTriangle((Vector2){ lastGesturePosition.x + 144, lastGesturePosition.y + 43 }, (Vector2){ lastGesturePosition.x + 159, lastGesturePosition.y + 53 }, (Vector2){ lastGesturePosition.x + 159, lastGesturePosition.y + 33 }, lastGesture == GESTURE_PINCH_IN? VIOLET : LIGHTGRAY);
-        for (i = 0; i < 4; i++) DrawCircle(lastGesturePosition.x + 180, lastGesturePosition.y + 7 + i*15, 5, touchCount <= i? LIGHTGRAY : gestureColor);
+        DrawText("Last gesture", lastGesturePosition.x + 33, lastGesturePosition.y - 47, 20, RL_BLACK);
+        DrawText("Swipe         Tap       Pinch  Touch", lastGesturePosition.x + 17, lastGesturePosition.y - 18, 10, RL_BLACK);
+        DrawRectangle(lastGesturePosition.x + 20, lastGesturePosition.y, 20, 20, lastGesture == GESTURE_SWIPE_UP ? RL_RED : RL_LIGHTGRAY);
+        DrawRectangle(lastGesturePosition.x, lastGesturePosition.y + 20, 20, 20, lastGesture == GESTURE_SWIPE_LEFT ? RL_RED : RL_LIGHTGRAY);
+        DrawRectangle(lastGesturePosition.x + 40, lastGesturePosition.y + 20, 20, 20, lastGesture == GESTURE_SWIPE_RIGHT ? RL_RED : RL_LIGHTGRAY);
+        DrawRectangle(lastGesturePosition.x + 20, lastGesturePosition.y + 40, 20, 20, lastGesture == GESTURE_SWIPE_DOWN ? RL_RED : RL_LIGHTGRAY);
+        DrawCircle(lastGesturePosition.x + 80, lastGesturePosition.y + 16, 10, lastGesture == GESTURE_TAP ? RL_BLUE : RL_LIGHTGRAY);
+        DrawRing( (Vector2){lastGesturePosition.x + 103, lastGesturePosition.y + 16}, 6.0f, 11.0f, 0.0f, 360.0f, 0, lastGesture == GESTURE_DRAG ? RL_LIME : RL_LIGHTGRAY);
+        DrawCircle(lastGesturePosition.x + 80, lastGesturePosition.y + 43, 10, lastGesture == GESTURE_DOUBLETAP ? RL_SKYBLUE : RL_LIGHTGRAY);
+        DrawCircle(lastGesturePosition.x + 103, lastGesturePosition.y + 43, 10, lastGesture == GESTURE_DOUBLETAP ? RL_SKYBLUE : RL_LIGHTGRAY);
+        DrawTriangle((Vector2){ lastGesturePosition.x + 122, lastGesturePosition.y + 16 }, (Vector2){ lastGesturePosition.x + 137, lastGesturePosition.y + 26 }, (Vector2){ lastGesturePosition.x + 137, lastGesturePosition.y + 6 }, lastGesture == GESTURE_PINCH_OUT? RL_ORANGE : RL_LIGHTGRAY);
+        DrawTriangle((Vector2){ lastGesturePosition.x + 147, lastGesturePosition.y + 6 }, (Vector2){ lastGesturePosition.x + 147, lastGesturePosition.y + 26 }, (Vector2){ lastGesturePosition.x + 162, lastGesturePosition.y + 16 }, lastGesture == GESTURE_PINCH_OUT? RL_ORANGE : RL_LIGHTGRAY);
+        DrawTriangle((Vector2){ lastGesturePosition.x + 125, lastGesturePosition.y + 33 }, (Vector2){ lastGesturePosition.x + 125, lastGesturePosition.y + 53 }, (Vector2){ lastGesturePosition.x + 140, lastGesturePosition.y + 43 }, lastGesture == GESTURE_PINCH_IN? RL_VIOLET : RL_LIGHTGRAY);
+        DrawTriangle((Vector2){ lastGesturePosition.x + 144, lastGesturePosition.y + 43 }, (Vector2){ lastGesturePosition.x + 159, lastGesturePosition.y + 53 }, (Vector2){ lastGesturePosition.x + 159, lastGesturePosition.y + 33 }, lastGesture == GESTURE_PINCH_IN? RL_VIOLET : RL_LIGHTGRAY);
+        for (i = 0; i < 4; i++) DrawCircle(lastGesturePosition.x + 180, lastGesturePosition.y + 7 + i*15, 5, touchCount <= i? RL_LIGHTGRAY : gestureColor);
 
         // Draw gesture log
         //--------------------------------------------------------------------------------------
-        DrawText("Log", gestureLogPosition.x, gestureLogPosition.y, 20, BLACK);
+        DrawText("Log", gestureLogPosition.x, gestureLogPosition.y, 20, RL_BLACK);
 
         // Loop in both directions to print the gesture log array in the inverted order (and looping around if the index started somewhere in the middle)
-        for (i = 0, ii = gestureLogIndex; i < GESTURE_LOG_SIZE; i++, ii = (ii + 1) % GESTURE_LOG_SIZE) DrawText(gestureLog[ii], gestureLogPosition.x, gestureLogPosition.y + 410 - i*20, 20, (i == 0 ? gestureColor : LIGHTGRAY));
+        for (i = 0, ii = gestureLogIndex; i < GESTURE_LOG_SIZE; i++, ii = (ii + 1) % GESTURE_LOG_SIZE) DrawText(gestureLog[ii], gestureLogPosition.x, gestureLogPosition.y + 410 - i*20, 20, (i == 0 ? gestureColor : RL_LIGHTGRAY));
         Color logButton1Color, logButton2Color;
         switch (logMode)
         {
-            case 3:  logButton1Color=MAROON; logButton2Color=MAROON; break;
-            case 2:  logButton1Color=GRAY;   logButton2Color=MAROON; break;
-            case 1:  logButton1Color=MAROON; logButton2Color=GRAY;   break;
-            default: logButton1Color=GRAY;   logButton2Color=GRAY;   break;
+            case 3:  logButton1Color=RL_MAROON; logButton2Color=RL_MAROON; break;
+            case 2:  logButton1Color=RL_GRAY;   logButton2Color=RL_MAROON; break;
+            case 1:  logButton1Color=RL_MAROON; logButton2Color=RL_GRAY;   break;
+            default: logButton1Color=RL_GRAY;   logButton2Color=RL_GRAY;   break;
         }
         DrawRectangleRec(logButton1, logButton1Color);
-        DrawText("Hide", logButton1.x + 7, logButton1.y + 3, 10, WHITE);
-        DrawText("Repeat", logButton1.x + 7, logButton1.y + 13, 10, WHITE);
+        DrawText("Hide", logButton1.x + 7, logButton1.y + 3, 10, RL_WHITE);
+        DrawText("Repeat", logButton1.x + 7, logButton1.y + 13, 10, RL_WHITE);
         DrawRectangleRec(logButton2, logButton2Color);
-        DrawText("Hide", logButton1.x + 62, logButton1.y + 3, 10, WHITE);
-        DrawText("Hold", logButton1.x + 62, logButton1.y + 13, 10, WHITE);
+        DrawText("Hide", logButton1.x + 62, logButton1.y + 3, 10, RL_WHITE);
+        DrawText("Hold", logButton1.x + 62, logButton1.y + 13, 10, RL_WHITE);
 
         // Draw protractor
         //--------------------------------------------------------------------------------------
-        DrawText("Angle", protractorPosition.x + 55, protractorPosition.y + 76, 10, BLACK);
+        DrawText("Angle", protractorPosition.x + 55, protractorPosition.y + 76, 10, RL_BLACK);
         const char *angleString = TextFormat("%f", currentAngleDegrees);
         const int angleStringDot = TextFindIndex(angleString, ".");
         const char *angleStringTrim = TextSubtext(angleString, 0, angleStringDot + 3);
         DrawText( angleStringTrim, protractorPosition.x + 55, protractorPosition.y + 92, 20, gestureColor);
-        DrawCircle(protractorPosition.x, protractorPosition.y, 80.0f, WHITE);
-        DrawLineEx((Vector2){ protractorPosition.x - 90, protractorPosition.y }, (Vector2){ protractorPosition.x + 90, protractorPosition.y }, 3.0f, LIGHTGRAY);
-        DrawLineEx((Vector2){ protractorPosition.x, protractorPosition.y - 90 }, (Vector2){ protractorPosition.x, protractorPosition.y + 90 }, 3.0f, LIGHTGRAY);
-        DrawLineEx((Vector2){ protractorPosition.x - 80, protractorPosition.y - 45 }, (Vector2){ protractorPosition.x + 80, protractorPosition.y + 45 }, 3.0f, GREEN);
-        DrawLineEx((Vector2){ protractorPosition.x - 80, protractorPosition.y + 45 }, (Vector2){ protractorPosition.x + 80, protractorPosition.y - 45 }, 3.0f, GREEN);
-        DrawText("0", protractorPosition.x + 96, protractorPosition.y - 9, 20, BLACK);
-        DrawText("30", protractorPosition.x + 74, protractorPosition.y - 68, 20, BLACK);
-        DrawText("90", protractorPosition.x - 11, protractorPosition.y - 110, 20, BLACK);
-        DrawText("150", protractorPosition.x - 100, protractorPosition.y - 68, 20, BLACK);
-        DrawText("180", protractorPosition.x - 124, protractorPosition.y - 9, 20, BLACK);
-        DrawText("210", protractorPosition.x - 100, protractorPosition.y + 50, 20, BLACK);
-        DrawText("270", protractorPosition.x - 18, protractorPosition.y + 92, 20, BLACK);
-        DrawText("330", protractorPosition.x + 72, protractorPosition.y + 50, 20, BLACK);
+        DrawCircle(protractorPosition.x, protractorPosition.y, 80.0f, RL_WHITE);
+        DrawLineEx((Vector2){ protractorPosition.x - 90, protractorPosition.y }, (Vector2){ protractorPosition.x + 90, protractorPosition.y }, 3.0f, RL_LIGHTGRAY);
+        DrawLineEx((Vector2){ protractorPosition.x, protractorPosition.y - 90 }, (Vector2){ protractorPosition.x, protractorPosition.y + 90 }, 3.0f, RL_LIGHTGRAY);
+        DrawLineEx((Vector2){ protractorPosition.x - 80, protractorPosition.y - 45 }, (Vector2){ protractorPosition.x + 80, protractorPosition.y + 45 }, 3.0f, RL_GREEN);
+        DrawLineEx((Vector2){ protractorPosition.x - 80, protractorPosition.y + 45 }, (Vector2){ protractorPosition.x + 80, protractorPosition.y - 45 }, 3.0f, RL_GREEN);
+        DrawText("0", protractorPosition.x + 96, protractorPosition.y - 9, 20, RL_BLACK);
+        DrawText("30", protractorPosition.x + 74, protractorPosition.y - 68, 20, RL_BLACK);
+        DrawText("90", protractorPosition.x - 11, protractorPosition.y - 110, 20, RL_BLACK);
+        DrawText("150", protractorPosition.x - 100, protractorPosition.y - 68, 20, RL_BLACK);
+        DrawText("180", protractorPosition.x - 124, protractorPosition.y - 9, 20, RL_BLACK);
+        DrawText("210", protractorPosition.x - 100, protractorPosition.y + 50, 20, RL_BLACK);
+        DrawText("270", protractorPosition.x - 18, protractorPosition.y + 92, 20, RL_BLACK);
+        DrawText("330", protractorPosition.x + 72, protractorPosition.y + 50, 20, RL_BLACK);
         if (currentAngleDegrees != 0.0f) DrawLineEx(protractorPosition, finalVector, 3.0f, gestureColor);
 
         // Draw touch and mouse pointer points

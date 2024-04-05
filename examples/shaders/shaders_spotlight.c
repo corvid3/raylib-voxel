@@ -180,20 +180,20 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(DARKBLUE);
+            ClearBackground(RL_DARKBLUE);
 
             // Draw stars and bobs
             for (int n = 0; n < MAX_STARS; n++)
             {
                 // Single pixel is just too small these days!
-                DrawRectangle((int)stars[n].position.x, (int)stars[n].position.y, 2, 2, WHITE);
+                DrawRectangle((int)stars[n].position.x, (int)stars[n].position.y, 2, 2, RL_WHITE);
             }
 
             for (int i = 0; i < 16; i++)
             {
                 DrawTexture(texRay,
                     (int)((screenWidth/2.0f) + cos((frameCounter + i*8)/51.45f)*(screenWidth/2.2f) - 32),
-                    (int)((screenHeight/2.0f) + sin((frameCounter + i*8)/17.87f)*(screenHeight/4.2f)), WHITE);
+                    (int)((screenHeight/2.0f) + sin((frameCounter + i*8)/17.87f)*(screenHeight/4.2f)), RL_WHITE);
             }
 
             // Draw spot lights
@@ -202,14 +202,14 @@ int main(void)
                 // a render texture of the full screen used to do screen
                 // scaling (slight adjustment to shader would be required
                 // to actually pay attention to the colour!)
-                DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
+                DrawRectangle(0, 0, screenWidth, screenHeight, RL_WHITE);
             EndShaderMode();
 
             DrawFPS(10, 10);
 
-            DrawText("Move the mouse!", 10, 30, 20, GREEN);
-            DrawText("Pitch Black", (int)(screenWidth*0.2f), screenHeight/2, 20, GREEN);
-            DrawText("Dark", (int)(screenWidth*.66f), screenHeight/2, 20, GREEN);
+            DrawText("Move the mouse!", 10, 30, 20, RL_GREEN);
+            DrawText("Pitch Black", (int)(screenWidth*0.2f), screenHeight/2, 20, RL_GREEN);
+            DrawText("Dark", (int)(screenWidth*.66f), screenHeight/2, 20, RL_GREEN);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

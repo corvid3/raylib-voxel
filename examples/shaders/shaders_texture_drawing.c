@@ -35,7 +35,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
 
-    Image imBlank = GenImageColor(1024, 1024, BLANK);
+    Image imBlank = GenImageColor(1024, 1024, RL_BLANK);
     Texture2D texture = LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
     UnloadImage(imBlank);
 
@@ -62,13 +62,13 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
-                DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all magic happens on shader
+                DrawTexture(texture, 0, 0, RL_WHITE);  // Drawing RL_BLANK texture, all magic happens on shader
             EndShaderMode();            // Disable our custom shader, return to default shader
 
-            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, MAROON);
+            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, RL_MAROON);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

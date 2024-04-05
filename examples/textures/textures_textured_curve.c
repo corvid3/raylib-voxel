@@ -107,34 +107,34 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             DrawTexturedCurve();    // Draw a textured Spline Cubic Bezier
             
             // Draw spline for reference
-            if (showCurve) DrawSplineSegmentBezierCubic(curveStartPosition, curveEndPosition, curveStartPositionTangent, curveEndPositionTangent, 2, BLUE);
+            if (showCurve) DrawSplineSegmentBezierCubic(curveStartPosition, curveEndPosition, curveStartPositionTangent, curveEndPositionTangent, 2, RL_BLUE);
 
             // Draw the various control points and highlight where the mouse is
-            DrawLineV(curveStartPosition, curveStartPositionTangent, SKYBLUE);
-            DrawLineV(curveStartPositionTangent, curveEndPositionTangent, Fade(LIGHTGRAY, 0.4f));
-            DrawLineV(curveEndPosition, curveEndPositionTangent, PURPLE);
+            DrawLineV(curveStartPosition, curveStartPositionTangent, RL_SKYBLUE);
+            DrawLineV(curveStartPositionTangent, curveEndPositionTangent, Fade(RL_LIGHTGRAY, 0.4f));
+            DrawLineV(curveEndPosition, curveEndPositionTangent, RL_PURPLE);
             
-            if (CheckCollisionPointCircle(mouse, curveStartPosition, 6)) DrawCircleV(curveStartPosition, 7, YELLOW);
-            DrawCircleV(curveStartPosition, 5, RED);
+            if (CheckCollisionPointCircle(mouse, curveStartPosition, 6)) DrawCircleV(curveStartPosition, 7, RL_YELLOW);
+            DrawCircleV(curveStartPosition, 5, RL_RED);
 
-            if (CheckCollisionPointCircle(mouse, curveStartPositionTangent, 6)) DrawCircleV(curveStartPositionTangent, 7, YELLOW);
-            DrawCircleV(curveStartPositionTangent, 5, MAROON);
+            if (CheckCollisionPointCircle(mouse, curveStartPositionTangent, 6)) DrawCircleV(curveStartPositionTangent, 7, RL_YELLOW);
+            DrawCircleV(curveStartPositionTangent, 5, RL_MAROON);
 
-            if (CheckCollisionPointCircle(mouse, curveEndPosition, 6)) DrawCircleV(curveEndPosition, 7, YELLOW);
-            DrawCircleV(curveEndPosition, 5, GREEN);
+            if (CheckCollisionPointCircle(mouse, curveEndPosition, 6)) DrawCircleV(curveEndPosition, 7, RL_YELLOW);
+            DrawCircleV(curveEndPosition, 5, RL_GREEN);
 
-            if (CheckCollisionPointCircle(mouse, curveEndPositionTangent, 6)) DrawCircleV(curveEndPositionTangent, 7, YELLOW);
-            DrawCircleV(curveEndPositionTangent, 5, DARKGREEN);
+            if (CheckCollisionPointCircle(mouse, curveEndPositionTangent, 6)) DrawCircleV(curveEndPositionTangent, 7, RL_YELLOW);
+            DrawCircleV(curveEndPositionTangent, 5, RL_DARKGREEN);
 
             // Draw usage info
-            DrawText("Drag points to move curve, press SPACE to show/hide base curve", 10, 10, 10, DARKGRAY);
-            DrawText(TextFormat("Curve width: %2.0f (Use + and - to adjust)", curveWidth), 10, 30, 10, DARKGRAY);
-            DrawText(TextFormat("Curve segments: %d (Use LEFT and RIGHT to adjust)", curveSegments), 10, 50, 10, DARKGRAY);
+            DrawText("Drag points to move curve, press SPACE to show/hide base curve", 10, 10, 10, RL_DARKGRAY);
+            DrawText(TextFormat("Curve width: %2.0f (Use + and - to adjust)", curveWidth), 10, 30, 10, RL_DARKGRAY);
+            DrawText(TextFormat("Curve segments: %d (Use LEFT and RIGHT to adjust)", curveSegments), 10, 50, 10, RL_DARKGRAY);
             
         EndDrawing();
         //----------------------------------------------------------------------------------

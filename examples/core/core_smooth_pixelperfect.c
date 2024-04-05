@@ -88,24 +88,24 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginTextureMode(target);
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode2D(worldSpaceCamera);
-                DrawRectanglePro(rec01, origin, rotation, BLACK);
-                DrawRectanglePro(rec02, origin, -rotation, RED);
-                DrawRectanglePro(rec03, origin, rotation + 45.0f, BLUE);
+                DrawRectanglePro(rec01, origin, rotation, RL_BLACK);
+                DrawRectanglePro(rec02, origin, -rotation, RL_RED);
+                DrawRectanglePro(rec03, origin, rotation + 45.0f, RL_BLUE);
             EndMode2D();
         EndTextureMode();
 
         BeginDrawing();
-            ClearBackground(RED);
+            ClearBackground(RL_RED);
 
             BeginMode2D(screenSpaceCamera);
-                DrawTexturePro(target.texture, sourceRec, destRec, origin, 0.0f, WHITE);
+                DrawTexturePro(target.texture, sourceRec, destRec, origin, 0.0f, RL_WHITE);
             EndMode2D();
 
-            DrawText(TextFormat("Screen resolution: %ix%i", screenWidth, screenHeight), 10, 10, 20, DARKBLUE);
-            DrawText(TextFormat("World resolution: %ix%i", virtualScreenWidth, virtualScreenHeight), 10, 40, 20, DARKGREEN);
+            DrawText(TextFormat("Screen resolution: %ix%i", screenWidth, screenHeight), 10, 10, 20, RL_DARKBLUE);
+            DrawText(TextFormat("World resolution: %ix%i", virtualScreenWidth, virtualScreenHeight), 10, 40, 20, RL_DARKGREEN);
             DrawFPS(GetScreenWidth() - 95, 10);
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -85,25 +85,25 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("TOTAL GIF FRAMES:  %02i", animFrames), 50, 30, 20, LIGHTGRAY);
-            DrawText(TextFormat("CURRENT FRAME: %02i", currentAnimFrame), 50, 60, 20, GRAY);
-            DrawText(TextFormat("CURRENT FRAME IMAGE.DATA OFFSET: %02i", nextFrameDataOffset), 50, 90, 20, GRAY);
+            DrawText(TextFormat("TOTAL GIF FRAMES:  %02i", animFrames), 50, 30, 20, RL_LIGHTGRAY);
+            DrawText(TextFormat("CURRENT FRAME: %02i", currentAnimFrame), 50, 60, 20, RL_GRAY);
+            DrawText(TextFormat("CURRENT FRAME IMAGE.DATA OFFSET: %02i", nextFrameDataOffset), 50, 90, 20, RL_GRAY);
 
-            DrawText("FRAMES DELAY: ", 100, 305, 10, DARKGRAY);
-            DrawText(TextFormat("%02i frames", frameDelay), 620, 305, 10, DARKGRAY);
-            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 350, 10, DARKGRAY);
+            DrawText("FRAMES DELAY: ", 100, 305, 10, RL_DARKGRAY);
+            DrawText(TextFormat("%02i frames", frameDelay), 620, 305, 10, RL_DARKGRAY);
+            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 350, 10, RL_DARKGRAY);
 
             for (int i = 0; i < MAX_FRAME_DELAY; i++)
             {
-                if (i < frameDelay) DrawRectangle(190 + 21*i, 300, 20, 20, RED);
-                DrawRectangleLines(190 + 21*i, 300, 20, 20, MAROON);
+                if (i < frameDelay) DrawRectangle(190 + 21*i, 300, 20, 20, RL_RED);
+                DrawRectangleLines(190 + 21*i, 300, 20, 20, RL_MAROON);
             }
 
-            DrawTexture(texScarfyAnim, GetScreenWidth()/2 - texScarfyAnim.width/2, 140, WHITE);
+            DrawTexture(texScarfyAnim, GetScreenWidth()/2 - texScarfyAnim.width/2, 140, RL_WHITE);
 
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

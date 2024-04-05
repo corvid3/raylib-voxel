@@ -59,16 +59,16 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
                 // Draw cube with an applied texture
-                DrawCubeTexture(texture, (Vector3){ -2.0f, 2.0f, 0.0f }, 2.0f, 4.0f, 2.0f, WHITE);
+                DrawCubeTexture(texture, (Vector3){ -2.0f, 2.0f, 0.0f }, 2.0f, 4.0f, 2.0f, RL_WHITE);
 
                 // Draw cube with an applied texture, but only a defined rectangle piece of the texture
                 DrawCubeTextureRec(texture, (Rectangle){ 0, texture.height/2, texture.width/2, texture.height/2 }, 
-                    (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);
+                    (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, RL_WHITE);
 
                 DrawGrid(10, 1.0f);        // Draw a grid
 

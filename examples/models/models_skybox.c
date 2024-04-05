@@ -143,14 +143,14 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
                 // We are inside the cube, we need to disable backface culling!
                 rlDisableBackfaceCulling();
                 rlDisableDepthMask();
-                    DrawModel(skybox, (Vector3){0, 0, 0}, 1.0f, WHITE);
+                    DrawModel(skybox, (Vector3){0, 0, 0}, 1.0f, RL_WHITE);
                 rlEnableBackfaceCulling();
                 rlEnableDepthMask();
 
@@ -158,10 +158,10 @@ int main(void)
 
             EndMode3D();
             
-            //DrawTextureEx(panorama, (Vector2){ 0, 0 }, 0.0f, 0.5f, WHITE);
+            //DrawTextureEx(panorama, (Vector2){ 0, 0 }, 0.0f, 0.5f, RL_WHITE);
 
-            if (useHDR) DrawText(TextFormat("Panorama image from hdrihaven.com: %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, BLACK);
-            else DrawText(TextFormat(": %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, BLACK);
+            if (useHDR) DrawText(TextFormat("Panorama image from hdrihaven.com: %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, RL_BLACK);
+            else DrawText(TextFormat(": %s", GetFileName(skyboxFileName)), 10, GetScreenHeight() - 20, 10, RL_BLACK);
 
             DrawFPS(10, 10);
 
@@ -246,7 +246,7 @@ static TextureCubemap GenTextureCubemap(Shader shader, Texture2D panorama, int s
         // TODO: Investigate this issue...
         //rlSetTexture(panorama.id); // WARNING: It must be called after enabling current framebuffer if using internal batch system!
         //rlClearScreenBuffers();
-        //DrawCubeV(Vector3Zero(), Vector3One(), WHITE);
+        //DrawCubeV(Vector3Zero(), Vector3One(), RL_WHITE);
         //rlDrawRenderBatchActive();
     }
     //------------------------------------------------------------------------------------------

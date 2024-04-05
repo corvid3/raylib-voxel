@@ -58,14 +58,14 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            DrawLine(500, 0, 500, GetScreenHeight(), Fade(RL_LIGHTGRAY, 0.6f));
+            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(RL_LIGHTGRAY, 0.3f));
 
-            if (drawRing) DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(MAROON, 0.3f));
-            if (drawRingLines) DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(BLACK, 0.4f));
-            if (drawCircleLines) DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, (int)segments, Fade(BLACK, 0.4f));
+            if (drawRing) DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(RL_MAROON, 0.3f));
+            if (drawRingLines) DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(RL_BLACK, 0.4f));
+            if (drawCircleLines) DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, (int)segments, Fade(RL_BLACK, 0.4f));
 
             // Draw GUI controls
             //------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ int main(void)
             //------------------------------------------------------------------------------
 
             int minSegments = (int)ceilf((endAngle - startAngle)/90);
-            DrawText(TextFormat("MODE: %s", (segments >= minSegments)? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments)? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= minSegments)? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments)? RL_MAROON : RL_DARKGRAY);
 
             DrawFPS(10, 10);
 

@@ -68,9 +68,9 @@
 
 #include <stdio.h>              // Required for: printf()
 
-#define RED        (Color){ 230, 41, 55, 255 }     // Red
-#define RAYWHITE   (Color){ 245, 245, 245, 255 }   // My own White (raylib logo)
-#define DARKGRAY   (Color){ 80, 80, 80, 255 }      // Dark Gray
+#define RL_RED        (Color){ 230, 41, 55, 255 }     // Red
+#define RL_RAYWHITE   (Color){ 245, 245, 245, 255 }   // My own White (raylib logo)
+#define RL_DARKGRAY   (Color){ 80, 80, 80, 255 }      // Dark Gray
 
 //----------------------------------------------------------------------------------
 // Structures Definition
@@ -207,8 +207,8 @@ int main(void)
             rlSetMatrixModelview(matView);    // Set internal modelview matrix (default shader)
             rlSetMatrixProjection(matProj);   // Set internal projection matrix (default shader)
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, RAYWHITE);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RL_RED);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, RL_RAYWHITE);
             DrawGrid(10, 1.0f);
 
             // Draw internal render batch buffers (3D data)
@@ -233,7 +233,7 @@ int main(void)
             rlMatrixMode(RL_MODELVIEW);                             // Enable internal modelview matrix
             rlLoadIdentity();                                       // Reset internal modelview matrix
 #endif
-            DrawRectangleV((Vector2){ 10.0f, 10.0f }, (Vector2){ 780.0f, 20.0f }, DARKGRAY);
+            DrawRectangleV((Vector2){ 10.0f, 10.0f }, (Vector2){ 780.0f, 20.0f }, RL_DARKGRAY);
 
             // Draw internal render batch buffers (2D data)
             rlDrawRenderBatchActive();

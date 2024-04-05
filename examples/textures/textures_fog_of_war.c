@@ -102,16 +102,16 @@ int main(void)
         //----------------------------------------------------------------------------------
         // Draw fog of war to a small render texture for automatic smoothing on scaling
         BeginTextureMode(fogOfWar);
-            ClearBackground(BLANK);
+            ClearBackground(RL_BLANK);
             for (unsigned int y = 0; y < map.tilesY; y++)
                 for (unsigned int x = 0; x < map.tilesX; x++)
-                    if (map.tileFog[y*map.tilesX + x] == 0) DrawRectangle(x, y, 1, 1, BLACK);
-                    else if (map.tileFog[y*map.tilesX + x] == 2) DrawRectangle(x, y, 1, 1, Fade(BLACK, 0.8f));
+                    if (map.tileFog[y*map.tilesX + x] == 0) DrawRectangle(x, y, 1, 1, RL_BLACK);
+                    else if (map.tileFog[y*map.tilesX + x] == 2) DrawRectangle(x, y, 1, 1, Fade(RL_BLACK, 0.8f));
         EndTextureMode();
 
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             for (unsigned int y = 0; y < map.tilesY; y++)
             {
@@ -119,23 +119,23 @@ int main(void)
                 {
                     // Draw tiles from id (and tile borders)
                     DrawRectangle(x*MAP_TILE_SIZE, y*MAP_TILE_SIZE, MAP_TILE_SIZE, MAP_TILE_SIZE,
-                                  (map.tileIds[y*map.tilesX + x] == 0)? BLUE : Fade(BLUE, 0.9f));
-                    DrawRectangleLines(x*MAP_TILE_SIZE, y*MAP_TILE_SIZE, MAP_TILE_SIZE, MAP_TILE_SIZE, Fade(DARKBLUE, 0.5f));
+                                  (map.tileIds[y*map.tilesX + x] == 0)? RL_BLUE : Fade(RL_BLUE, 0.9f));
+                    DrawRectangleLines(x*MAP_TILE_SIZE, y*MAP_TILE_SIZE, MAP_TILE_SIZE, MAP_TILE_SIZE, Fade(RL_DARKBLUE, 0.5f));
                 }
             }
 
             // Draw player
-            DrawRectangleV(playerPosition, (Vector2){ PLAYER_SIZE, PLAYER_SIZE }, RED);
+            DrawRectangleV(playerPosition, (Vector2){ PLAYER_SIZE, PLAYER_SIZE }, RL_RED);
 
 
             // Draw fog of war (scaled to full map, bilinear filtering)
             DrawTexturePro(fogOfWar.texture, (Rectangle){ 0, 0, (float)fogOfWar.texture.width, (float)-fogOfWar.texture.height },
                            (Rectangle){ 0, 0, (float)map.tilesX*MAP_TILE_SIZE, (float)map.tilesY*MAP_TILE_SIZE },
-                           (Vector2){ 0, 0 }, 0.0f, WHITE);
+                           (Vector2){ 0, 0 }, 0.0f, RL_WHITE);
 
             // Draw player current tile
-            DrawText(TextFormat("Current tile: [%i,%i]", playerTileX, playerTileY), 10, 10, 20, RAYWHITE);
-            DrawText("ARROW KEYS to move", 10, screenHeight-25, 20, RAYWHITE);
+            DrawText(TextFormat("Current tile: [%i,%i]", playerTileX, playerTileY), 10, 10, 20, RL_RAYWHITE);
+            DrawText("ARROW KEYS to move", 10, screenHeight-25, 20, RL_RAYWHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

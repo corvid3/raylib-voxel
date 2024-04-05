@@ -80,27 +80,27 @@ int main(void)
         //-----------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision? RED : BLACK);
+            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision? RL_RED : RL_BLACK);
 
-            DrawRectangleRec(boxA, GOLD);
-            DrawRectangleRec(boxB, BLUE);
+            DrawRectangleRec(boxA, RL_GOLD);
+            DrawRectangleRec(boxB, RL_BLUE);
 
             if (collision)
             {
                 // Draw collision area
-                DrawRectangleRec(boxCollision, LIME);
+                DrawRectangleRec(boxCollision, RL_LIME);
 
                 // Draw collision message
-                DrawText("COLLISION!", GetScreenWidth()/2 - MeasureText("COLLISION!", 20)/2, screenUpperLimit/2 - 10, 20, BLACK);
+                DrawText("COLLISION!", GetScreenWidth()/2 - MeasureText("COLLISION!", 20)/2, screenUpperLimit/2 - 10, 20, RL_BLACK);
 
                 // Draw collision area
-                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.width*(int)boxCollision.height), GetScreenWidth()/2 - 100, screenUpperLimit + 10, 20, BLACK);
+                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.width*(int)boxCollision.height), GetScreenWidth()/2 - 100, screenUpperLimit + 10, 20, RL_BLACK);
             }
 
             // Draw help instructions
-            DrawText("Press SPACE to PAUSE/RESUME", 20, screenHeight - 35, 20, LIGHTGRAY);
+            DrawText("Press SPACE to PAUSE/RESUME", 20, screenHeight - 35, 20, RL_LIGHTGRAY);
 
             DrawFPS(10, 10);
 

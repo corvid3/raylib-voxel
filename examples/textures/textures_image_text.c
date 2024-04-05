@@ -31,7 +31,7 @@ int main(void)
     Font font = LoadFontEx("resources/KAISG.ttf", 64, 0, 0);
 
     // Draw over image using custom font
-    ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", (Vector2){ 20.0f, 20.0f }, (float)font.baseSize, 0.0f, RED);
+    ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", (Vector2){ 20.0f, 20.0f }, (float)font.baseSize, 0.0f, RL_RED);
 
     Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
     UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
@@ -56,20 +56,20 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             if (!showFont)
             {
                 // Draw texture with text already drawn inside
-                DrawTextureV(texture, position, WHITE);
+                DrawTextureV(texture, position, RL_WHITE);
 
                 // Draw text directly using sprite font
                 DrawTextEx(font, "[Parrots font drawing]", (Vector2){ position.x + 20,
-                           position.y + 20 + 280 }, (float)font.baseSize, 0.0f, WHITE);
+                           position.y + 20 + 280 }, (float)font.baseSize, 0.0f, RL_WHITE);
             }
-            else DrawTexture(font.texture, screenWidth/2 - font.texture.width/2, 50, BLACK);
+            else DrawTexture(font.texture, screenWidth/2 - font.texture.width/2, 50, RL_BLACK);
 
-            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, DARKGRAY);
+            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

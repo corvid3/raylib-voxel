@@ -956,9 +956,9 @@ int InitPlatform(void)
     {
         EGL_RENDERABLE_TYPE, (rlGetVersion() == RL_OPENGL_ES_30)? EGL_OPENGL_ES3_BIT : EGL_OPENGL_ES2_BIT,      // Type of context support
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,          // Don't use it on Android!
-        EGL_RED_SIZE, 8,            // RED color bit depth (alternative: 5)
-        EGL_GREEN_SIZE, 8,          // GREEN color bit depth (alternative: 6)
-        EGL_BLUE_SIZE, 8,           // BLUE color bit depth (alternative: 5)
+        EGL_RED_SIZE, 8,            // RL_RED color bit depth (alternative: 5)
+        EGL_GREEN_SIZE, 8,          // RL_GREEN color bit depth (alternative: 6)
+        EGL_BLUE_SIZE, 8,           // RL_BLUE color bit depth (alternative: 5)
         EGL_ALPHA_SIZE, 8,        // ALPHA bit depth (required for transparent framebuffer)
         //EGL_TRANSPARENT_TYPE, EGL_NONE, // Request transparent framebuffer (EGL_TRANSPARENT_RGB does not work on RPI)
         EGL_DEPTH_SIZE, 16,         // Depth buffer size (Required to use Depth testing!)

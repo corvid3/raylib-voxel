@@ -105,12 +105,12 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawTexture(catSharpendTexture, 0, 0, WHITE);
-            DrawTexture(catSobelTexture, 200, 0, WHITE);
-            DrawTexture(catGaussianTexture, 400, 0, WHITE);
-            DrawTexture(texture, 600, 0, WHITE);
+            DrawTexture(catSharpendTexture, 0, 0, RL_WHITE);
+            DrawTexture(catSobelTexture, 200, 0, RL_WHITE);
+            DrawTexture(catGaussianTexture, 400, 0, RL_WHITE);
+            DrawTexture(texture, 600, 0, RL_WHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -1240,7 +1240,7 @@ void UploadMesh(Mesh *mesh, bool dynamic)
     {
         // Default vertex attribute: color
         // WARNING: Default value provided to shader if location available
-        float value[4] = { 1.0f, 1.0f, 1.0f, 1.0f };    // WHITE
+        float value[4] = { 1.0f, 1.0f, 1.0f, 1.0f };    // RL_WHITE
         rlSetVertexAttributeDefault(3, value, SHADER_ATTRIB_VEC4, 4);
         rlDisableVertexAttribute(3);
     }
@@ -2000,7 +2000,7 @@ static void ProcessMaterialsOBJ(Material *materials, tinyobj_material_t *mats, i
         materials[m].maps[MATERIAL_MAP_SPECULAR].value = 0.0f;
 
         if (mats[m].bump_texname != NULL) materials[m].maps[MATERIAL_MAP_NORMAL].texture = LoadTexture(mats[m].bump_texname);  //char *bump_texname; // map_bump, bump
-        materials[m].maps[MATERIAL_MAP_NORMAL].color = WHITE;
+        materials[m].maps[MATERIAL_MAP_NORMAL].color = RL_WHITE;
         materials[m].maps[MATERIAL_MAP_NORMAL].value = mats[m].shininess;
 
         materials[m].maps[MATERIAL_MAP_EMISSION].color = (Color){ (unsigned char)(mats[m].emission[0]*255.0f), (unsigned char)(mats[m].emission[1]*255.0f), (unsigned char)(mats[m].emission[2] * 255.0f), 255 }; //float emission[3];
@@ -2054,8 +2054,8 @@ Material LoadMaterialDefault(void)
     //material.maps[MATERIAL_MAP_NORMAL].texture;         // NOTE: By default, not set
     //material.maps[MATERIAL_MAP_SPECULAR].texture;       // NOTE: By default, not set
 
-    material.maps[MATERIAL_MAP_DIFFUSE].color = WHITE;    // Diffuse color
-    material.maps[MATERIAL_MAP_SPECULAR].color = WHITE;   // Specular color
+    material.maps[MATERIAL_MAP_DIFFUSE].color = RL_WHITE;    // Diffuse color
+    material.maps[MATERIAL_MAP_SPECULAR].color = RL_WHITE;   // Specular color
 
     return material;
 }
@@ -2921,7 +2921,7 @@ Mesh GenMeshKnot(float radius, float size, int radSeg, int sides)
 // NOTE: Vertex data is uploaded to GPU
 Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
 {
-    #define GRAY_VALUE(c) ((float)(c.r + c.g + c.b)/3.0f)
+    #define RL_GRAY_VALUE(c) ((float)(c.r + c.g + c.b)/3.0f)
 
     Mesh mesh = { 0 };
 
@@ -2960,15 +2960,15 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
 
             // one triangle - 3 vertex
             mesh.vertices[vCounter] = (float)x*scaleFactor.x;
-            mesh.vertices[vCounter + 1] = GRAY_VALUE(pixels[x + z*mapX])*scaleFactor.y;
+            mesh.vertices[vCounter + 1] = RL_GRAY_VALUE(pixels[x + z*mapX])*scaleFactor.y;
             mesh.vertices[vCounter + 2] = (float)z*scaleFactor.z;
 
             mesh.vertices[vCounter + 3] = (float)x*scaleFactor.x;
-            mesh.vertices[vCounter + 4] = GRAY_VALUE(pixels[x + (z + 1)*mapX])*scaleFactor.y;
+            mesh.vertices[vCounter + 4] = RL_GRAY_VALUE(pixels[x + (z + 1)*mapX])*scaleFactor.y;
             mesh.vertices[vCounter + 5] = (float)(z + 1)*scaleFactor.z;
 
             mesh.vertices[vCounter + 6] = (float)(x + 1)*scaleFactor.x;
-            mesh.vertices[vCounter + 7] = GRAY_VALUE(pixels[(x + 1) + z*mapX])*scaleFactor.y;
+            mesh.vertices[vCounter + 7] = RL_GRAY_VALUE(pixels[(x + 1) + z*mapX])*scaleFactor.y;
             mesh.vertices[vCounter + 8] = (float)z*scaleFactor.z;
 
             // Another triangle - 3 vertex
@@ -2981,7 +2981,7 @@ Mesh GenMeshHeightmap(Image heightmap, Vector3 size)
             mesh.vertices[vCounter + 14] = mesh.vertices[vCounter + 5];
 
             mesh.vertices[vCounter + 15] = (float)(x + 1)*scaleFactor.x;
-            mesh.vertices[vCounter + 16] = GRAY_VALUE(pixels[(x + 1) + (z + 1)*mapX])*scaleFactor.y;
+            mesh.vertices[vCounter + 16] = RL_GRAY_VALUE(pixels[(x + 1) + (z + 1)*mapX])*scaleFactor.y;
             mesh.vertices[vCounter + 17] = (float)(z + 1)*scaleFactor.z;
             vCounter += 18;     // 6 vertex, 18 floats
 
@@ -3111,14 +3111,14 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
             Vector3 v7 = { w*(x - 0.5f), 0, h*(z + 0.5f) };
             Vector3 v8 = { w*(x + 0.5f), 0, h*(z + 0.5f) };
 
-            // We check pixel color to be WHITE -> draw full cube
-            if (COLOR_EQUAL(pixels[z*cubicmap.width + x], WHITE))
+            // We check pixel color to be RL_WHITE -> draw full cube
+            if (COLOR_EQUAL(pixels[z*cubicmap.width + x], RL_WHITE))
             {
                 // Define triangles and checking collateral cubes
                 //------------------------------------------------
 
                 // Define top triangles (2 tris, 6 vertex --> v1-v2-v3, v1-v3-v4)
-                // WARNING: Not required for a WHITE cubes, created to allow seeing the map from outside
+                // WARNING: Not required for a RL_WHITE cubes, created to allow seeing the map from outside
                 mapVertices[vCounter] = v1;
                 mapVertices[vCounter + 1] = v2;
                 mapVertices[vCounter + 2] = v3;
@@ -3169,7 +3169,7 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
                 tcCounter += 6;
 
                 // Checking cube on bottom of current cube
-                if (((z < cubicmap.height - 1) && COLOR_EQUAL(pixels[(z + 1)*cubicmap.width + x], BLACK)) || (z == cubicmap.height - 1))
+                if (((z < cubicmap.height - 1) && COLOR_EQUAL(pixels[(z + 1)*cubicmap.width + x], RL_BLACK)) || (z == cubicmap.height - 1))
                 {
                     // Define front triangles (2 tris, 6 vertex) --> v2 v7 v3, v3 v7 v8
                     // NOTE: Collateral occluded faces are not generated
@@ -3199,7 +3199,7 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
                 }
 
                 // Checking cube on top of current cube
-                if (((z > 0) && COLOR_EQUAL(pixels[(z - 1)*cubicmap.width + x], BLACK)) || (z == 0))
+                if (((z > 0) && COLOR_EQUAL(pixels[(z - 1)*cubicmap.width + x], RL_BLACK)) || (z == 0))
                 {
                     // Define back triangles (2 tris, 6 vertex) --> v1 v5 v6, v1 v4 v5
                     // NOTE: Collateral occluded faces are not generated
@@ -3229,7 +3229,7 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
                 }
 
                 // Checking cube on right of current cube
-                if (((x < cubicmap.width - 1) && COLOR_EQUAL(pixels[z*cubicmap.width + (x + 1)], BLACK)) || (x == cubicmap.width - 1))
+                if (((x < cubicmap.width - 1) && COLOR_EQUAL(pixels[z*cubicmap.width + (x + 1)], RL_BLACK)) || (x == cubicmap.width - 1))
                 {
                     // Define right triangles (2 tris, 6 vertex) --> v3 v8 v4, v4 v8 v5
                     // NOTE: Collateral occluded faces are not generated
@@ -3259,7 +3259,7 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
                 }
 
                 // Checking cube on left of current cube
-                if (((x > 0) && COLOR_EQUAL(pixels[z*cubicmap.width + (x - 1)], BLACK)) || (x == 0))
+                if (((x > 0) && COLOR_EQUAL(pixels[z*cubicmap.width + (x - 1)], RL_BLACK)) || (x == 0))
                 {
                     // Define left triangles (2 tris, 6 vertex) --> v1 v7 v2, v1 v6 v7
                     // NOTE: Collateral occluded faces are not generated
@@ -3288,8 +3288,8 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
                     tcCounter += 6;
                 }
             }
-            // We check pixel color to be BLACK, we will only draw floor and roof
-            else if (COLOR_EQUAL(pixels[z*cubicmap.width + x], BLACK))
+            // We check pixel color to be RL_BLACK, we will only draw floor and roof
+            else if (COLOR_EQUAL(pixels[z*cubicmap.width + x], RL_BLACK))
             {
                 // Define top triangles (2 tris, 6 vertex --> v1-v2-v3, v1-v3-v4)
                 mapVertices[vCounter] = v1;
@@ -3561,7 +3561,7 @@ void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rota
     {
         Color color = model.materials[model.meshMaterial[i]].maps[MATERIAL_MAP_DIFFUSE].color;
 
-        Color colorTint = WHITE;
+        Color colorTint = RL_WHITE;
         colorTint.r = (unsigned char)((((float)color.r/255.0f)*((float)tint.r/255.0f))*255.0f);
         colorTint.g = (unsigned char)((((float)color.g/255.0f)*((float)tint.g/255.0f))*255.0f);
         colorTint.b = (unsigned char)((((float)color.b/255.0f)*((float)tint.b/255.0f))*255.0f);
@@ -5968,7 +5968,7 @@ static Model LoadM3D(const char *fileName)
                     } break;
                     case m3dp_Ps:
                     {
-                        model.materials[i + 1].maps[MATERIAL_MAP_NORMAL].color = WHITE;
+                        model.materials[i + 1].maps[MATERIAL_MAP_NORMAL].color = RL_WHITE;
                         model.materials[i + 1].maps[MATERIAL_MAP_NORMAL].value = prop->value.fnum;
                     } break;
                     default:

@@ -91,25 +91,25 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawRectangle(0, 0, GetScreenWidth(), 70, BLACK);
-            DrawText(TextFormat("Total codepoints contained in provided text: %i", codepointCount), 10, 10, 20, GREEN);
-            DrawText(TextFormat("Total codepoints required for font atlas (duplicates excluded): %i", codepointsNoDupsCount), 10, 40, 20, GREEN);
+            DrawRectangle(0, 0, GetScreenWidth(), 70, RL_BLACK);
+            DrawText(TextFormat("Total codepoints contained in provided text: %i", codepointCount), 10, 10, 20, RL_GREEN);
+            DrawText(TextFormat("Total codepoints required for font atlas (duplicates excluded): %i", codepointsNoDupsCount), 10, 40, 20, RL_GREEN);
 
             if (showFontAtlas)
             {
                 // Draw generated font texture atlas containing provided codepoints
-                DrawTexture(font.texture, 150, 100, BLACK);
-                DrawRectangleLines(150, 100, font.texture.width, font.texture.height, BLACK);
+                DrawTexture(font.texture, 150, 100, RL_BLACK);
+                DrawRectangleLines(150, 100, font.texture.width, font.texture.height, RL_BLACK);
             }
             else
             {
                 // Draw provided text with laoded font, containing all required codepoint glyphs
-                DrawTextEx(font, text, (Vector2) { 160, 110 }, 48, 5, BLACK);
+                DrawTextEx(font, text, (Vector2) { 160, 110 }, 48, 5, RL_BLACK);
             }
 
-            DrawText("Press SPACE to toggle font atlas view!", 10, GetScreenHeight() - 30, 20, GRAY);
+            DrawText("Press SPACE to toggle font atlas view!", 10, GetScreenHeight() - 30, 20, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

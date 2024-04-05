@@ -59,13 +59,13 @@ int main(void)
         //-----------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawCircleV(ballPosition, (float)ballRadius, MAROON);
-            //DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, LIGHTGRAY);
+            DrawCircleV(ballPosition, (float)ballRadius, RL_MAROON);
+            //DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, RL_LIGHTGRAY);
 
             // On pause, we draw a blinking message
-            if (pause && ((framesCounter/30)%2)) DrawText("PAUSED", 350, 200, 30, GRAY);
+            if (pause && ((framesCounter/30)%2)) DrawText("PAUSED", 350, 200, 30, RL_GRAY);
 
             DrawFPS(10, 10);
 

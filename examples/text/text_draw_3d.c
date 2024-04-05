@@ -40,7 +40,7 @@
 //--------------------------------------------------------------------------------------
 #define LETTER_BOUNDRY_SIZE     0.25f
 #define TEXT_MAX_LAYERS         32
-#define LETTER_BOUNDRY_COLOR    VIOLET
+#define LETTER_BOUNDRY_COLOR    RL_VIOLET
 
 bool SHOW_LETTER_BOUNDRY = false;
 bool SHOW_TEXT_BOUNDRY = false;
@@ -124,8 +124,8 @@ int main(void)
     float time = 0.0f;
 
     // Setup a light and dark color
-    Color light = MAROON;
-    Color dark = RED;
+    Color light = RL_MAROON;
+    Color dark = RL_RED;
 
     // Load the alpha discard shader
     Shader alphaDiscard = LoadShader(NULL, "resources/shaders/glsl330/alpha_discard.fs");
@@ -277,7 +277,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
                 DrawCubeV(cubePosition, cubeSize, dark);
@@ -317,42 +317,42 @@ int main(void)
                         quads += TextLength(opt);
                         Vector3 m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         Vector3 pos = { -m.x/2.0f, 0.01f, 2.0f};
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_BLUE);
                         pos.z += 0.5f + m.z;
 
                         opt = (char *)TextFormat("< SPACING: %2.1f >", fontSpacing);
                         quads += TextLength(opt);
                         m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         pos.x = -m.x/2.0f;
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_BLUE);
                         pos.z += 0.5f + m.z;
 
                         opt = (char *)TextFormat("< LINE: %2.1f >", lineSpacing);
                         quads += TextLength(opt);
                         m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         pos.x = -m.x/2.0f;
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, BLUE);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_BLUE);
                         pos.z += 1.0f + m.z;
 
                         opt = (char *)TextFormat("< LBOX: %3s >", slb? "ON" : "OFF");
                         quads += TextLength(opt);
                         m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         pos.x = -m.x/2.0f;
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RED);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_RED);
                         pos.z += 0.5f + m.z;
 
                         opt = (char *)TextFormat("< TBOX: %3s >", SHOW_TEXT_BOUNDRY? "ON" : "OFF");
                         quads += TextLength(opt);
                         m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         pos.x = -m.x/2.0f;
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RED);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_RED);
                         pos.z += 0.5f + m.z;
 
                         opt = (char *)TextFormat("< LAYER DISTANCE: %.3f >", layerDistance);
                         quads += TextLength(opt);
                         m = MeasureText3D(GetFontDefault(), opt, 8.0f, 1.0f, 0.0f);
                         pos.x = -m.x/2.0f;
-                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, DARKPURPLE);
+                        DrawText3D(GetFontDefault(), opt, pos, 8.0f, 1.0f, 0.0f, false, RL_DARKPURPLE);
                     rlPopMatrix();
                     //-------------------------------------------------------------------------
 
@@ -362,42 +362,42 @@ int main(void)
                     quads += 36;
                     m = MeasureText3D(GetFontDefault(), opt, 10.0f, 0.5f, 0.0f);
                     pos = (Vector3){-m.x/2.0f, 0.01f, 2.0f};
-                    DrawText3D(GetFontDefault(), opt, pos, 10.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 10.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     pos.z += 1.5f + m.z;
 
                     opt = "press [Left]/[Right] to change the font size";
                     quads += 44;
                     m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
                     pos.x = -m.x/2.0f;
-                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     pos.z += 0.5f + m.z;
 
                     opt = "press [Up]/[Down] to change the font spacing";
                     quads += 44;
                     m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
                     pos.x = -m.x/2.0f;
-                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     pos.z += 0.5f + m.z;
 
                     opt = "press [PgUp]/[PgDown] to change the line spacing";
                     quads += 48;
                     m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
                     pos.x = -m.x/2.0f;
-                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     pos.z += 0.5f + m.z;
 
                     opt = "press [F1] to toggle the letter boundry";
                     quads += 39;
                     m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
                     pos.x = -m.x/2.0f;
-                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     pos.z += 0.5f + m.z;
 
                     opt = "press [F2] to toggle the text boundry";
                     quads += 37;
                     m = MeasureText3D(GetFontDefault(), opt, 6.0f, 0.5f, 0.0f);
                     pos.x = -m.x/2.0f;
-                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, DARKBLUE);
+                    DrawText3D(GetFontDefault(), opt, pos, 6.0f, 0.5f, 0.0f, false, RL_DARKBLUE);
                     //-------------------------------------------------------------------------
 
                     SHOW_LETTER_BOUNDRY = slb;
@@ -408,28 +408,28 @@ int main(void)
             // Draw 2D info text & stats
             //-------------------------------------------------------------------------
             DrawText("Drag & drop a font file to change the font!\nType something, see what happens!\n\n"
-            "Press [F3] to toggle the camera", 10, 35, 10, BLACK);
+            "Press [F3] to toggle the camera", 10, 35, 10, RL_BLACK);
 
             quads += TextLength(text)*2*layers;
             char *tmp = (char *)TextFormat("%2i layer(s) | %s camera | %4i quads (%4i verts)", layers, spin? "ORBITAL" : "FREE", quads, quads*4);
             int width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 10, 10, DARKGREEN);
+            DrawText(tmp, screenWidth - 20 - width, 10, 10, RL_DARKGREEN);
 
             tmp = "[Home]/[End] to add/remove 3D text layers";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 25, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 25, 10, RL_DARKGRAY);
 
             tmp = "[Insert]/[Delete] to increase/decrease distance between layers";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 40, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 40, 10, RL_DARKGRAY);
 
             tmp = "click the [CUBE] for a random color";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 55, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 55, 10, RL_DARKGRAY);
 
             tmp = "[Tab] to toggle multicolor mode";
             width = MeasureText(tmp, 10);
-            DrawText(tmp, screenWidth - 20 - width, 70, 10, DARKGRAY);
+            DrawText(tmp, screenWidth - 20 - width, 70, 10, RL_DARKGRAY);
             //-------------------------------------------------------------------------
 
             DrawFPS(10, 10);

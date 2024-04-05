@@ -74,7 +74,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
@@ -83,13 +83,13 @@ int main(void)
                 // Draw order matters!
                 if (distanceStatic > distanceRotating) 
                 {
-                    DrawBillboard(camera, bill, billPositionStatic, 2.0f, WHITE);
-                    DrawBillboardPro(camera, bill, source, billPositionRotating, billUp, (Vector2) {1.0f, 1.0f}, rotateOrigin, rotation, WHITE);
+                    DrawBillboard(camera, bill, billPositionStatic, 2.0f, RL_WHITE);
+                    DrawBillboardPro(camera, bill, source, billPositionRotating, billUp, (Vector2) {1.0f, 1.0f}, rotateOrigin, rotation, RL_WHITE);
                 } 
                 else
                 {
-                    DrawBillboardPro(camera, bill, source, billPositionRotating, billUp, (Vector2) {1.0f, 1.0f}, rotateOrigin, rotation, WHITE);
-                    DrawBillboard(camera, bill, billPositionStatic, 2.0f, WHITE);
+                    DrawBillboardPro(camera, bill, source, billPositionRotating, billUp, (Vector2) {1.0f, 1.0f}, rotateOrigin, rotation, RL_WHITE);
+                    DrawBillboard(camera, bill, billPositionStatic, 2.0f, RL_WHITE);
                 }
                 
             EndMode3D();

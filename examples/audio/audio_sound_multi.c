@@ -64,9 +64,9 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText("Press SPACE to PLAY a WAV sound!", 200, 180, 20, LIGHTGRAY);
+            DrawText("Press SPACE to PLAY a WAV sound!", 200, 180, 20, RL_LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

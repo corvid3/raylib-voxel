@@ -79,7 +79,7 @@ int main(void)
 
     // Create a white texture of the size of the window to update
     // each pixel of the window using the fragment shader: golRenderShader
-    Image whiteImage = GenImageColor(GOL_WIDTH, GOL_WIDTH, WHITE);
+    Image whiteImage = GenImageColor(GOL_WIDTH, GOL_WIDTH, RL_WHITE);
     Texture whiteTex = LoadTextureFromImage(whiteImage);
     UnloadImage(whiteImage);
     //--------------------------------------------------------------------------------------
@@ -138,15 +138,15 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(BLANK);
+            ClearBackground(RL_BLANK);
 
             BeginShaderMode(golRenderShader);
-                DrawTexture(whiteTex, 0, 0, WHITE);
+                DrawTexture(whiteTex, 0, 0, RL_WHITE);
             EndShaderMode();
 
-            DrawRectangleLines(GetMouseX() - brushSize/2, GetMouseY() - brushSize/2, brushSize, brushSize, RED);
+            DrawRectangleLines(GetMouseX() - brushSize/2, GetMouseY() - brushSize/2, brushSize, brushSize, RL_RED);
 
-            DrawText("Use Mouse wheel to increase/decrease brush size", 10, 10, 20, WHITE);
+            DrawText("Use Mouse wheel to increase/decrease brush size", 10, 10, 20, RL_WHITE);
             DrawFPS(GetScreenWidth() - 100, 10);
 
         EndDrawing();

@@ -190,21 +190,21 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // Draw information text
-            DrawText(TextFormat("Easing x: %s", Easings[easingX].name), 20, FONT_SIZE, FONT_SIZE, LIGHTGRAY);
-            DrawText(TextFormat("Easing y: %s", Easings[easingY].name), 20, FONT_SIZE*2, FONT_SIZE, LIGHTGRAY);
-            DrawText(TextFormat("t (%c) = %.2f d = %.2f", (boundedT == true)? 'b' : 'u', t, d), 20, FONT_SIZE*3, FONT_SIZE, LIGHTGRAY);
+            DrawText(TextFormat("Easing x: %s", Easings[easingX].name), 20, FONT_SIZE, FONT_SIZE, RL_LIGHTGRAY);
+            DrawText(TextFormat("Easing y: %s", Easings[easingY].name), 20, FONT_SIZE*2, FONT_SIZE, RL_LIGHTGRAY);
+            DrawText(TextFormat("t (%c) = %.2f d = %.2f", (boundedT == true)? 'b' : 'u', t, d), 20, FONT_SIZE*3, FONT_SIZE, RL_LIGHTGRAY);
 
             // Draw instructions text
-            DrawText("Use ENTER to play or pause movement, use SPACE to restart", 20, GetScreenHeight() - FONT_SIZE*2, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use Q and W or A and S keys to change duration", 20, GetScreenHeight() - FONT_SIZE*3, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use LEFT or RIGHT keys to choose easing for the x axis", 20, GetScreenHeight() - FONT_SIZE*4, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use UP or DOWN keys to choose easing for the y axis", 20, GetScreenHeight() - FONT_SIZE*5, FONT_SIZE, LIGHTGRAY);
+            DrawText("Use ENTER to play or pause movement, use SPACE to restart", 20, GetScreenHeight() - FONT_SIZE*2, FONT_SIZE, RL_LIGHTGRAY);
+            DrawText("Use Q and W or A and S keys to change duration", 20, GetScreenHeight() - FONT_SIZE*3, FONT_SIZE, RL_LIGHTGRAY);
+            DrawText("Use LEFT or RIGHT keys to choose easing for the x axis", 20, GetScreenHeight() - FONT_SIZE*4, FONT_SIZE, RL_LIGHTGRAY);
+            DrawText("Use UP or DOWN keys to choose easing for the y axis", 20, GetScreenHeight() - FONT_SIZE*5, FONT_SIZE, RL_LIGHTGRAY);
 
             // Draw ball
-            DrawCircleV(ballPosition, 16.0f, MAROON);
+            DrawCircleV(ballPosition, 16.0f, RL_MAROON);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

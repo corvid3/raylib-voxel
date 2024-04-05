@@ -102,12 +102,12 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
                 // Draw 3d model with texture
-                if (drawMesh) DrawModel(model, position, 1.0f, WHITE);
+                if (drawMesh) DrawModel(model, position, 1.0f, RL_WHITE);
 
                 // Draw the animated skeleton
                 if (drawSkeleton)
@@ -123,23 +123,23 @@ int main(void)
                         if (!animPlaying || !animsCount)
                         {
                             // Display the bind-pose skeleton
-                            DrawCube(model.bindPose[i].translation, 0.04f, 0.04f, 0.04f, RED);
+                            DrawCube(model.bindPose[i].translation, 0.04f, 0.04f, 0.04f, RL_RED);
 
                             if (model.bones[i].parent >= 0)
                             {
                                 DrawLine3D(model.bindPose[i].translation,
-                                    model.bindPose[model.bones[i].parent].translation, RED);
+                                    model.bindPose[model.bones[i].parent].translation, RL_RED);
                             }
                         }
                         else
                         {
                             // Display the frame-pose skeleton
-                            DrawCube(anims[animId].framePoses[animFrameCounter][i].translation, 0.05f, 0.05f, 0.05f, RED);
+                            DrawCube(anims[animId].framePoses[animFrameCounter][i].translation, 0.05f, 0.05f, 0.05f, RL_RED);
 
                             if (anims[animId].bones[i].parent >= 0)
                             {
                                 DrawLine3D(anims[animId].framePoses[animFrameCounter][i].translation,
-                                    anims[animId].framePoses[animFrameCounter][anims[animId].bones[i].parent].translation, RED);
+                                    anims[animId].framePoses[animFrameCounter][anims[animId].bones[i].parent].translation, RL_RED);
                             }
                         }
                     }
@@ -149,11 +149,11 @@ int main(void)
 
             EndMode3D();
 
-            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, GetScreenHeight() - 80, 10, MAROON);
-            DrawText("PRESS N to STEP ONE ANIMATION FRAME", 10, GetScreenHeight() - 60, 10, DARKGRAY);
-            DrawText("PRESS C to CYCLE THROUGH ANIMATIONS", 10, GetScreenHeight() - 40, 10, DARKGRAY);
-            DrawText("PRESS M to toggle MESH, B to toggle SKELETON DRAWING", 10, GetScreenHeight() - 20, 10, DARKGRAY);
-            DrawText("(c) CesiumMan model by KhronosGroup", GetScreenWidth() - 210, GetScreenHeight() - 20, 10, GRAY);
+            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, GetScreenHeight() - 80, 10, RL_MAROON);
+            DrawText("PRESS N to STEP ONE ANIMATION FRAME", 10, GetScreenHeight() - 60, 10, RL_DARKGRAY);
+            DrawText("PRESS C to CYCLE THROUGH ANIMATIONS", 10, GetScreenHeight() - 40, 10, RL_DARKGRAY);
+            DrawText("PRESS M to toggle MESH, B to toggle SKELETON DRAWING", 10, GetScreenHeight() - 20, 10, RL_DARKGRAY);
+            DrawText("(c) CesiumMan model by KhronosGroup", GetScreenWidth() - 210, GetScreenHeight() - 20, 10, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

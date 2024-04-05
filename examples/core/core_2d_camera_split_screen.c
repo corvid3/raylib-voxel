@@ -78,80 +78,80 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginTextureMode(screenCamera1);
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
             
             BeginMode2D(camera1);
             
                 // Draw full scene with first camera
                 for (int i = 0; i < screenWidth/PLAYER_SIZE + 1; i++)
                 {
-                    DrawLineV((Vector2){(float)PLAYER_SIZE*i, 0}, (Vector2){ (float)PLAYER_SIZE*i, (float)screenHeight}, LIGHTGRAY);
+                    DrawLineV((Vector2){(float)PLAYER_SIZE*i, 0}, (Vector2){ (float)PLAYER_SIZE*i, (float)screenHeight}, RL_LIGHTGRAY);
                 }
 
                 for (int i = 0; i < screenHeight/PLAYER_SIZE + 1; i++)
                 {
-                    DrawLineV((Vector2){0, (float)PLAYER_SIZE*i}, (Vector2){ (float)screenWidth, (float)PLAYER_SIZE*i}, LIGHTGRAY);
+                    DrawLineV((Vector2){0, (float)PLAYER_SIZE*i}, (Vector2){ (float)screenWidth, (float)PLAYER_SIZE*i}, RL_LIGHTGRAY);
                 }
 
                 for (int i = 0; i < screenWidth/PLAYER_SIZE; i++)
                 {
                     for (int j = 0; j < screenHeight/PLAYER_SIZE; j++)
                     {
-                        DrawText(TextFormat("[%i,%i]", i, j), 10 + PLAYER_SIZE*i, 15 + PLAYER_SIZE*j, 10, LIGHTGRAY);
+                        DrawText(TextFormat("[%i,%i]", i, j), 10 + PLAYER_SIZE*i, 15 + PLAYER_SIZE*j, 10, RL_LIGHTGRAY);
                     }
                 }
 
-                DrawRectangleRec(player1, RED);
-                DrawRectangleRec(player2, BLUE);
+                DrawRectangleRec(player1, RL_RED);
+                DrawRectangleRec(player2, RL_BLUE);
             EndMode2D();
             
-            DrawRectangle(0, 0, GetScreenWidth()/2, 30, Fade(RAYWHITE, 0.6f));
-            DrawText("PLAYER1: W/S/A/D to move", 10, 10, 10, MAROON);
+            DrawRectangle(0, 0, GetScreenWidth()/2, 30, Fade(RL_RAYWHITE, 0.6f));
+            DrawText("PLAYER1: W/S/A/D to move", 10, 10, 10, RL_MAROON);
             
         EndTextureMode();
 
         BeginTextureMode(screenCamera2);
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
             
             BeginMode2D(camera2);
             
                 // Draw full scene with second camera
                 for (int i = 0; i < screenWidth/PLAYER_SIZE + 1; i++)
                 {
-                    DrawLineV((Vector2){ (float)PLAYER_SIZE*i, 0}, (Vector2){ (float)PLAYER_SIZE*i, (float)screenHeight}, LIGHTGRAY);
+                    DrawLineV((Vector2){ (float)PLAYER_SIZE*i, 0}, (Vector2){ (float)PLAYER_SIZE*i, (float)screenHeight}, RL_LIGHTGRAY);
                 }
 
                 for (int i = 0; i < screenHeight/PLAYER_SIZE + 1; i++)
                 {
-                    DrawLineV((Vector2){0, (float)PLAYER_SIZE*i}, (Vector2){ (float)screenWidth, (float)PLAYER_SIZE*i}, LIGHTGRAY);
+                    DrawLineV((Vector2){0, (float)PLAYER_SIZE*i}, (Vector2){ (float)screenWidth, (float)PLAYER_SIZE*i}, RL_LIGHTGRAY);
                 }
 
                 for (int i = 0; i < screenWidth/PLAYER_SIZE; i++)
                 {
                     for (int j = 0; j < screenHeight/PLAYER_SIZE; j++)
                     {
-                        DrawText(TextFormat("[%i,%i]", i, j), 10 + PLAYER_SIZE*i, 15 + PLAYER_SIZE*j, 10, LIGHTGRAY);
+                        DrawText(TextFormat("[%i,%i]", i, j), 10 + PLAYER_SIZE*i, 15 + PLAYER_SIZE*j, 10, RL_LIGHTGRAY);
                     }
                 }
 
-                DrawRectangleRec(player1, RED);
-                DrawRectangleRec(player2, BLUE);
+                DrawRectangleRec(player1, RL_RED);
+                DrawRectangleRec(player2, RL_BLUE);
                 
             EndMode2D();
             
-            DrawRectangle(0, 0, GetScreenWidth()/2, 30, Fade(RAYWHITE, 0.6f));
-            DrawText("PLAYER2: UP/DOWN/LEFT/RIGHT to move", 10, 10, 10, DARKBLUE);
+            DrawRectangle(0, 0, GetScreenWidth()/2, 30, Fade(RL_RAYWHITE, 0.6f));
+            DrawText("PLAYER2: UP/DOWN/LEFT/RIGHT to move", 10, 10, 10, RL_DARKBLUE);
             
         EndTextureMode();
 
         // Draw both views render textures to the screen side by side
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(RL_BLACK);
             
-            DrawTextureRec(screenCamera1.texture, splitScreenRect, (Vector2){ 0, 0 }, WHITE);
-            DrawTextureRec(screenCamera2.texture, splitScreenRect, (Vector2){ screenWidth/2.0f, 0 }, WHITE);
+            DrawTextureRec(screenCamera1.texture, splitScreenRect, (Vector2){ 0, 0 }, RL_WHITE);
+            DrawTextureRec(screenCamera2.texture, splitScreenRect, (Vector2){ screenWidth/2.0f, 0 }, RL_WHITE);
             
-            DrawRectangle(GetScreenWidth()/2 - 2, 0, 4, GetScreenHeight(), LIGHTGRAY);
+            DrawRectangle(GetScreenWidth()/2 - 2, 0, 4, GetScreenHeight(), RL_LIGHTGRAY);
         EndDrawing();
     }
 

@@ -39,8 +39,8 @@ int main(void)
 
     InitAudioDevice();                  // Initialize audio device
 
-    Color colors[14] = { ORANGE, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK,
-                         YELLOW, GREEN, SKYBLUE, PURPLE, BEIGE };
+    Color colors[14] = { RL_ORANGE, RL_RED, RL_GOLD, RL_LIME, RL_BLUE, RL_VIOLET, RL_BROWN, RL_LIGHTGRAY, RL_PINK,
+                         RL_YELLOW, RL_GREEN, RL_SKYBLUE, RL_PURPLE, RL_BEIGE };
 
     // Creates some circles for visual effect
     CircleWave circles[MAX_CIRCLES] = { 0 };
@@ -123,7 +123,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             for (int i = MAX_CIRCLES - 1; i >= 0; i--)
             {
@@ -131,17 +131,17 @@ int main(void)
             }
 
             // Draw time bar
-            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, LIGHTGRAY);
-            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, MAROON);
-            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, GRAY);
+            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, RL_LIGHTGRAY);
+            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, RL_MAROON);
+            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, RL_GRAY);
 
             // Draw help instructions
-            DrawRectangle(20, 20, 425, 145, WHITE);
-            DrawRectangleLines(20, 20, 425, 145, GRAY);
-            DrawText("PRESS SPACE TO RESTART MUSIC", 40, 40, 20, BLACK);
-            DrawText("PRESS P TO PAUSE/RESUME", 40, 70, 20, BLACK);
-            DrawText("PRESS UP/DOWN TO CHANGE SPEED", 40, 100, 20, BLACK);
-            DrawText(TextFormat("SPEED: %f", pitch), 40, 130, 20, MAROON);
+            DrawRectangle(20, 20, 425, 145, RL_WHITE);
+            DrawRectangleLines(20, 20, 425, 145, RL_GRAY);
+            DrawText("PRESS SPACE TO RESTART MUSIC", 40, 40, 20, RL_BLACK);
+            DrawText("PRESS P TO PAUSE/RESUME", 40, 70, 20, RL_BLACK);
+            DrawText("PRESS UP/DOWN TO CHANGE SPEED", 40, 100, 20, RL_BLACK);
+            DrawText(TextFormat("SPEED: %f", pitch), 40, 130, 20, RL_MAROON);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -80,9 +80,9 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawTextureRec(button, sourceRec, (Vector2){ btnBounds.x, btnBounds.y }, WHITE); // Draw button frame
+            DrawTextureRec(button, sourceRec, (Vector2){ btnBounds.x, btnBounds.y }, RL_WHITE); // Draw button frame
 
         EndDrawing();
         //----------------------------------------------------------------------------------

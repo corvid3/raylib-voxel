@@ -67,19 +67,19 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, LIGHTGRAY);
+            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, RL_LIGHTGRAY);
 
             if (!useTtf)
             {
-                DrawTextEx(fontBm, msg, (Vector2){ 20.0f, 100.0f }, (float)fontBm.baseSize, 2, MAROON);
-                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, GRAY);
+                DrawTextEx(fontBm, msg, (Vector2){ 20.0f, 100.0f }, (float)fontBm.baseSize, 2, RL_MAROON);
+                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, RL_GRAY);
             }
             else
             {
-                DrawTextEx(fontTtf, msg, (Vector2){ 20.0f, 100.0f }, (float)fontTtf.baseSize, 2, LIME);
-                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, GRAY);
+                DrawTextEx(fontTtf, msg, (Vector2){ 20.0f, 100.0f }, (float)fontTtf.baseSize, 2, RL_LIME);
+                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, RL_GRAY);
             }
 
         EndDrawing();

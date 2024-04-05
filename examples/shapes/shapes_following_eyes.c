@@ -84,15 +84,15 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawCircleV(scleraLeftPosition, scleraRadius, LIGHTGRAY);
-            DrawCircleV(irisLeftPosition, irisRadius, BROWN);
-            DrawCircleV(irisLeftPosition, 10, BLACK);
+            DrawCircleV(scleraLeftPosition, scleraRadius, RL_LIGHTGRAY);
+            DrawCircleV(irisLeftPosition, irisRadius, RL_BROWN);
+            DrawCircleV(irisLeftPosition, 10, RL_BLACK);
 
-            DrawCircleV(scleraRightPosition, scleraRadius, LIGHTGRAY);
-            DrawCircleV(irisRightPosition, irisRadius, DARKGREEN);
-            DrawCircleV(irisRightPosition, 10, BLACK);
+            DrawCircleV(scleraRightPosition, scleraRadius, RL_LIGHTGRAY);
+            DrawCircleV(irisRightPosition, irisRadius, RL_DARKGREEN);
+            DrawCircleV(irisRightPosition, 10, RL_BLACK);
 
             DrawFPS(10, 10);
 

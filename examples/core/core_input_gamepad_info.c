@@ -45,26 +45,26 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             for (int i = 0, y = 10; i < 4; i++)     // MAX_GAMEPADS = 4
             {
                 if (IsGamepadAvailable(i))
                 {
-                    DrawText(TextFormat("Gamepad name: %s", GetGamepadName(i)), 10, y, 20, BLACK);
+                    DrawText(TextFormat("Gamepad name: %s", GetGamepadName(i)), 10, y, 20, RL_BLACK);
                     y += 30;
-                    DrawText(TextFormat("\tAxis count:   %d", GetGamepadAxisCount(i)), 10, y, 20, BLACK);
+                    DrawText(TextFormat("\tAxis count:   %d", GetGamepadAxisCount(i)), 10, y, 20, RL_BLACK);
                     y += 30;
 
                     for (int axis = 0; axis < GetGamepadAxisCount(i); axis++)
                     {
-                        DrawText(TextFormat("\tAxis %d = %f", axis, GetGamepadAxisMovement(i, axis)), 10, y, 20, BLACK);
+                        DrawText(TextFormat("\tAxis %d = %f", axis, GetGamepadAxisMovement(i, axis)), 10, y, 20, RL_BLACK);
                         y += 30;
                     }
 
                     for (int button = 0; button < 32; button++)
                     {
-                        DrawText(TextFormat("\tButton %d = %d", button, IsGamepadButtonDown(i, button)), 10, y, 20, BLACK);
+                        DrawText(TextFormat("\tButton %d = %d", button, IsGamepadButtonDown(i, button)), 10, y, 20, RL_BLACK);
                         y += 30;
                     }
                 }

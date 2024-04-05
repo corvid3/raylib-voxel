@@ -51,7 +51,7 @@ int main(void)
     };
 
     // Setup colors
-    const Color colors[] = { BLACK, MAROON, ORANGE, BLUE, PURPLE, BEIGE, LIME, RED, DARKGRAY, SKYBLUE };
+    const Color colors[] = { RL_BLACK, RL_MAROON, RL_ORANGE, RL_BLUE, RL_PURPLE, RL_BEIGE, RL_LIME, RL_RED, RL_DARKGRAY, RL_SKYBLUE };
     enum { MAX_COLORS = SIZEOF(colors) };
     Rectangle colorRec[MAX_COLORS] = { 0 };
 
@@ -127,36 +127,36 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // Draw the tiled area
             DrawTextureTiled(texPattern, recPattern[activePattern], (Rectangle){(float)OPT_WIDTH+MARGIN_SIZE, (float)MARGIN_SIZE, GetScreenWidth() - OPT_WIDTH - 2.0f*MARGIN_SIZE, GetScreenHeight() - 2.0f*MARGIN_SIZE},
                 (Vector2){0.0f, 0.0f}, rotation, scale, colors[activeCol]);
 
             // Draw options
-            DrawRectangle(MARGIN_SIZE, MARGIN_SIZE, OPT_WIDTH - MARGIN_SIZE, GetScreenHeight() - 2*MARGIN_SIZE, ColorAlpha(LIGHTGRAY, 0.5f));
+            DrawRectangle(MARGIN_SIZE, MARGIN_SIZE, OPT_WIDTH - MARGIN_SIZE, GetScreenHeight() - 2*MARGIN_SIZE, ColorAlpha(RL_LIGHTGRAY, 0.5f));
 
-            DrawText("Select Pattern", 2 + MARGIN_SIZE, 30 + MARGIN_SIZE, 10, BLACK);
-            DrawTexture(texPattern, 2 + MARGIN_SIZE, 40 + MARGIN_SIZE, BLACK);
-            DrawRectangle(2 + MARGIN_SIZE + (int)recPattern[activePattern].x, 40 + MARGIN_SIZE + (int)recPattern[activePattern].y, (int)recPattern[activePattern].width, (int)recPattern[activePattern].height, ColorAlpha(DARKBLUE, 0.3f));
+            DrawText("Select Pattern", 2 + MARGIN_SIZE, 30 + MARGIN_SIZE, 10, RL_BLACK);
+            DrawTexture(texPattern, 2 + MARGIN_SIZE, 40 + MARGIN_SIZE, RL_BLACK);
+            DrawRectangle(2 + MARGIN_SIZE + (int)recPattern[activePattern].x, 40 + MARGIN_SIZE + (int)recPattern[activePattern].y, (int)recPattern[activePattern].width, (int)recPattern[activePattern].height, ColorAlpha(RL_DARKBLUE, 0.3f));
 
-            DrawText("Select Color", 2+MARGIN_SIZE, 10+256+MARGIN_SIZE, 10, BLACK);
+            DrawText("Select Color", 2+MARGIN_SIZE, 10+256+MARGIN_SIZE, 10, RL_BLACK);
             for (int i = 0; i < MAX_COLORS; i++)
             {
                 DrawRectangleRec(colorRec[i], colors[i]);
-                if (activeCol == i) DrawRectangleLinesEx(colorRec[i], 3, ColorAlpha(WHITE, 0.5f));
+                if (activeCol == i) DrawRectangleLinesEx(colorRec[i], 3, ColorAlpha(RL_WHITE, 0.5f));
             }
 
-            DrawText("Scale (UP/DOWN to change)", 2 + MARGIN_SIZE, 80 + 256 + MARGIN_SIZE, 10, BLACK);
-            DrawText(TextFormat("%.2fx", scale), 2 + MARGIN_SIZE, 92 + 256 + MARGIN_SIZE, 20, BLACK);
+            DrawText("Scale (UP/DOWN to change)", 2 + MARGIN_SIZE, 80 + 256 + MARGIN_SIZE, 10, RL_BLACK);
+            DrawText(TextFormat("%.2fx", scale), 2 + MARGIN_SIZE, 92 + 256 + MARGIN_SIZE, 20, RL_BLACK);
 
-            DrawText("Rotation (LEFT/RIGHT to change)", 2 + MARGIN_SIZE, 122 + 256 + MARGIN_SIZE, 10, BLACK);
-            DrawText(TextFormat("%.0f degrees", rotation), 2 + MARGIN_SIZE, 134 + 256 + MARGIN_SIZE, 20, BLACK);
+            DrawText("Rotation (LEFT/RIGHT to change)", 2 + MARGIN_SIZE, 122 + 256 + MARGIN_SIZE, 10, RL_BLACK);
+            DrawText(TextFormat("%.0f degrees", rotation), 2 + MARGIN_SIZE, 134 + 256 + MARGIN_SIZE, 20, RL_BLACK);
 
-            DrawText("Press [SPACE] to reset", 2 + MARGIN_SIZE, 164 + 256 + MARGIN_SIZE, 10, DARKBLUE);
+            DrawText("Press [SPACE] to reset", 2 + MARGIN_SIZE, 164 + 256 + MARGIN_SIZE, 10, RL_DARKBLUE);
 
             // Draw FPS
-            DrawText(TextFormat("%i FPS", GetFPS()), 2 + MARGIN_SIZE, 2 + MARGIN_SIZE, 20, BLACK);
+            DrawText(TextFormat("%i FPS", GetFPS()), 2 + MARGIN_SIZE, 2 + MARGIN_SIZE, 20, RL_BLACK);
         EndDrawing();
         //----------------------------------------------------------------------------------
     }

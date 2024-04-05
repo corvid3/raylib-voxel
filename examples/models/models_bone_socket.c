@@ -121,7 +121,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
                 // Draw character
@@ -154,9 +154,9 @@ int main(void)
                 DrawGrid(10, 1.0f);
             EndMode3D();
 
-            DrawText("Use the T/G to switch animation", 10, 10, 20, GRAY);
-            DrawText("Use the F/H to rotate character left/right", 10, 35, 20, GRAY);
-            DrawText("Use the 1,2,3 to toggle shown of hat, sword and shield", 10, 60, 20, GRAY);
+            DrawText("Use the T/G to switch animation", 10, 10, 20, RL_GRAY);
+            DrawText("Use the F/H to rotate character left/right", 10, 35, 20, RL_GRAY);
+            DrawText("Use the 1,2,3 to toggle shown of hat, sword and shield", 10, 60, 20, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

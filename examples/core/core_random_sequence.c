@@ -79,20 +79,20 @@ int main(void) {
     //----------------------------------------------------------------------------------
     BeginDrawing();
 
-    ClearBackground(RAYWHITE);
+    ClearBackground(RL_RAYWHITE);
     
     int fontSize = 20;
     for(int x=0;x<rectCount;x++)
     {
       DrawRectangleRec(rectangles[x].r, rectangles[x].c);
-      DrawTextCenterKeyHelp("SPACE", "to shuffle the sequence.", 10, screenHeight - 96, fontSize, BLACK);
-      DrawTextCenterKeyHelp("UP", "to add a rectangle and generate a new sequence.", 10, screenHeight - 64, fontSize, BLACK);
-      DrawTextCenterKeyHelp("DOWN", "to remove a rectangle and generate a new sequence.", 10, screenHeight - 32, fontSize, BLACK);
+      DrawTextCenterKeyHelp("SPACE", "to shuffle the sequence.", 10, screenHeight - 96, fontSize, RL_BLACK);
+      DrawTextCenterKeyHelp("UP", "to add a rectangle and generate a new sequence.", 10, screenHeight - 64, fontSize, RL_BLACK);
+      DrawTextCenterKeyHelp("DOWN", "to remove a rectangle and generate a new sequence.", 10, screenHeight - 32, fontSize, RL_BLACK);
     }
 
     const char* rectCountText = TextFormat("%d rectangles", rectCount);
     int rectCountTextSize = MeasureText(rectCountText, fontSize);
-    DrawText(rectCountText, screenWidth - rectCountTextSize - 10, 10, fontSize, BLACK);
+    DrawText(rectCountText, screenWidth - rectCountTextSize - 10, 10, fontSize, RL_BLACK);
 
     DrawFPS(10, 10);
 
@@ -169,8 +169,8 @@ static void DrawTextCenterKeyHelp(const char* key, const char* text, int posX, i
 
   DrawText("Press", posX, posY, fontSize, color);
   textSizeCurrent += pressSize + 2 * spaceSize;
-  DrawText(key, posX + textSizeCurrent, posY, fontSize, RED);
-  DrawRectangle(posX + textSizeCurrent, posY + fontSize, keySize, 3, RED);
+  DrawText(key, posX + textSizeCurrent, posY, fontSize, RL_RED);
+  DrawRectangle(posX + textSizeCurrent, posY + fontSize, keySize, 3, RL_RED);
   textSizeCurrent += keySize + 2 * spaceSize;
   DrawText(text, posX + textSizeCurrent, posY, fontSize, color);
 }

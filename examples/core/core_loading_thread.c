@@ -98,27 +98,27 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             switch (state)
             {
-                case STATE_WAITING: DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20, DARKGRAY); break;
+                case STATE_WAITING: DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20, RL_DARKGRAY); break;
                 case STATE_LOADING:
                 {
-                    DrawRectangle(150, 200, atomic_load_explicit(&dataProgress, memory_order_relaxed), 60, SKYBLUE);
-                    if ((framesCounter/15)%2) DrawText("LOADING DATA...", 240, 210, 40, DARKBLUE);
+                    DrawRectangle(150, 200, atomic_load_explicit(&dataProgress, memory_order_relaxed), 60, RL_SKYBLUE);
+                    if ((framesCounter/15)%2) DrawText("LOADING DATA...", 240, 210, 40, RL_DARKBLUE);
 
                 } break;
                 case STATE_FINISHED:
                 {
-                    DrawRectangle(150, 200, 500, 60, LIME);
-                    DrawText("DATA LOADED!", 250, 210, 40, GREEN);
+                    DrawRectangle(150, 200, 500, 60, RL_LIME);
+                    DrawText("DATA LOADED!", 250, 210, 40, RL_GREEN);
 
                 } break;
                 default: break;
             }
 
-            DrawRectangleLines(150, 200, 500, 60, DARKGRAY);
+            DrawRectangleLines(150, 200, 500, 60, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

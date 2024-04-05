@@ -119,10 +119,10 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-            ClearBackground(WHITE);
+            ClearBackground(RL_WHITE);
 
-            DrawRectangle(10, 10, 210, 30, MAROON);
-            DrawText(TextFormat("%zu particles in one vertex buffer", MAX_PARTICLES), 20, 20, 10, RAYWHITE);
+            DrawRectangle(10, 10, 210, 30, RL_MAROON);
+            DrawText(TextFormat("%zu particles in one vertex buffer", MAX_PARTICLES), 20, 20, 10, RL_RAYWHITE);
             
             rlDrawRenderBatchActive();      // Draw iternal buffers data (previous draw calls)
 

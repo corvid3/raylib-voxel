@@ -358,7 +358,7 @@ Font LoadFont(const char *fileName)
 #endif
     {
         Image image = LoadImage(fileName);
-        if (image.data != NULL) font = LoadFontFromImage(image, MAGENTA, FONT_TTF_DEFAULT_FIRST_CHAR);
+        if (image.data != NULL) font = LoadFontFromImage(image, RL_MAGENTA, FONT_TTF_DEFAULT_FIRST_CHAR);
         UnloadImage(image);
     }
 
@@ -480,9 +480,9 @@ Font LoadFontFromImage(Image image, Color key, int firstChar)
 
     // NOTE: We need to remove key color borders from image to avoid weird
     // artifacts on texture scaling when using TEXTURE_FILTER_BILINEAR or TEXTURE_FILTER_TRILINEAR
-    for (int i = 0; i < image.height*image.width; i++) if (COLOR_EQUAL(pixels[i], key)) pixels[i] = BLANK;
+    for (int i = 0; i < image.height*image.width; i++) if (COLOR_EQUAL(pixels[i], key)) pixels[i] = RL_BLANK;
 
-    // Create a new image with the processed color data (key color replaced by BLANK)
+    // Create a new image with the processed color data (key color replaced by RL_BLANK)
     Image fontClear = {
         .data = pixels,
         .width = image.width,
@@ -914,7 +914,7 @@ Image GenImageFontAtlas(const GlyphInfo *glyphs, Rectangle **glyphRecs, int glyp
     }
 #endif
 
-    // Convert image data from GRAYSCALE to GRAY_ALPHA
+    // Convert image data from RL_GRAYSCALE to RL_GRAY_ALPHA
     unsigned char *dataGrayAlpha = (unsigned char *)RL_MALLOC(atlas.width*atlas.height*sizeof(unsigned char)*2); // Two channels
 
     for (int i = 0, k = 0; i < atlas.width*atlas.height; i++, k += 2)
@@ -1000,10 +1000,10 @@ bool ExportFontAsCode(Font font, const char *fileName)
     // Support font export and initialization
     // NOTE: This mechanism is highly coupled to raylib
     Image image = LoadImageFromTexture(font.texture);
-    if (image.format != PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA) TRACELOG(LOG_WARNING, "Font export as code: Font image format is not GRAY+ALPHA!");
+    if (image.format != PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA) TRACELOG(LOG_WARNING, "Font export as code: Font image format is not RL_GRAY+ALPHA!");
     int imageDataSize = GetPixelDataSize(image.width, image.height, image.format);
 
-    // Image data is usually GRAYSCALE + ALPHA and can be reduced to GRAYSCALE
+    // Image data is usually RL_GRAYSCALE + ALPHA and can be reduced to RL_GRAYSCALE
     //ImageFormat(&image, PIXELFORMAT_UNCOMPRESSED_GRAYSCALE);
 
 #define SUPPORT_COMPRESSED_FONT_ATLAS
@@ -1019,7 +1019,7 @@ bool ExportFontAsCode(Font font, const char *fileName)
     // Save font image data (compressed)
     byteCount += sprintf(txtData + byteCount, "#define COMPRESSED_DATA_SIZE_FONT_%s %i\n\n", TextToUpper(fileNamePascal), compDataSize);
     byteCount += sprintf(txtData + byteCount, "// Font image pixels data compressed (DEFLATE)\n");
-    byteCount += sprintf(txtData + byteCount, "// NOTE: Original pixel data simplified to GRAYSCALE\n");
+    byteCount += sprintf(txtData + byteCount, "// NOTE: Original pixel data simplified to RL_GRAYSCALE\n");
     byteCount += sprintf(txtData + byteCount, "static unsigned char fontData_%s[COMPRESSED_DATA_SIZE_FONT_%s] = { ", fileNamePascal, TextToUpper(fileNamePascal));
     for (int i = 0; i < compDataSize - 1; i++) byteCount += sprintf(txtData + byteCount, ((i%TEXT_BYTES_PER_LINE == 0)? "0x%02x,\n    " : "0x%02x, "), compData[i]);
     byteCount += sprintf(txtData + byteCount, "0x%02x };\n\n", compData[compDataSize - 1]);
@@ -1027,7 +1027,7 @@ bool ExportFontAsCode(Font font, const char *fileName)
 #else
     // Save font image data (uncompressed)
     byteCount += sprintf(txtData + byteCount, "// Font image pixels data\n");
-    byteCount += sprintf(txtData + byteCount, "// NOTE: 2 bytes per pixel, GRAY + ALPHA channels\n");
+    byteCount += sprintf(txtData + byteCount, "// NOTE: 2 bytes per pixel, RL_GRAY + ALPHA channels\n");
     byteCount += sprintf(txtData + byteCount, "static unsigned char fontImageData_%s[%i] = { ", fileNamePascal, imageDataSize);
     for (int i = 0; i < imageDataSize - 1; i++) byteCount += sprintf(txtData + byteCount, ((i%TEXT_BYTES_PER_LINE == 0)? "0x%02x,\n    " : "0x%02x, "), ((unsigned char *)imFont.data)[i]);
     byteCount += sprintf(txtData + byteCount, "0x%02x };\n\n", ((unsigned char *)imFont.data)[imageDataSize - 1]);
@@ -1116,11 +1116,11 @@ bool ExportFontAsCode(Font font, const char *fileName)
 // NOTE: Uses default font
 void DrawFPS(int posX, int posY)
 {
-    Color color = LIME;                         // Good FPS
+    Color color = RL_LIME;                         // Good FPS
     int fps = GetFPS();
 
-    if ((fps < 30) && (fps >= 15)) color = ORANGE;  // Warning FPS
-    else if (fps < 15) color = RED;             // Low FPS
+    if ((fps < 30) && (fps >= 15)) color = RL_ORANGE;  // Warning FPS
+    else if (fps < 15) color = RL_RED;             // Low FPS
 
     DrawText(TextFormat("%2i FPS", fps), posX, posY, 20, color);
 }
@@ -2168,7 +2168,7 @@ static Font LoadBMFont(const char *fileName)
 
         if (imFonts[i].format == PIXELFORMAT_UNCOMPRESSED_GRAYSCALE)
         {
-            // Convert image to GRAYSCALE + ALPHA, using the mask as the alpha channel
+            // Convert image to RL_GRAYSCALE + ALPHA, using the mask as the alpha channel
             Image imFontAlpha = {
                 .data = RL_CALLOC(imFonts[i].width*imFonts[i].height, 2),
                 .width = imFonts[i].width,
@@ -2196,13 +2196,13 @@ static Font LoadBMFont(const char *fileName)
     if (pageCount > 1)
     {
         // Resize font atlas to draw additional images
-        ImageResizeCanvas(&fullFont, imWidth, imHeight*pageCount, 0, 0, BLACK);
+        ImageResizeCanvas(&fullFont, imWidth, imHeight*pageCount, 0, 0, RL_BLACK);
 
         for (int i = 1; i < pageCount; i++)
         {
             Rectangle srcRec = { 0.0f, 0.0f, (float)imWidth, (float)imHeight };
             Rectangle destRec = { 0.0f, (float)imHeight*(float)i, (float)imWidth, (float)imHeight };
-            ImageDraw(&fullFont, imFonts[i], srcRec, destRec, WHITE);
+            ImageDraw(&fullFont, imFonts[i], srcRec, destRec, RL_WHITE);
         }
     }
 

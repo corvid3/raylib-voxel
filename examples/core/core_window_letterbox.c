@@ -76,22 +76,22 @@ int main(void)
         //----------------------------------------------------------------------------------
         // Draw everything in the render texture, note this will not be rendered on screen, yet
         BeginTextureMode(target);
-            ClearBackground(RAYWHITE);  // Clear render texture background color
+            ClearBackground(RL_RAYWHITE);  // Clear render texture background color
 
             for (int i = 0; i < 10; i++) DrawRectangle(0, (gameScreenHeight/10)*i, gameScreenWidth, gameScreenHeight/10, colors[i]);
 
-            DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, WHITE);
-            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.x, (int)mouse.y), 350, 25, 20, GREEN);
-            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.x, (int)virtualMouse.y), 350, 55, 20, YELLOW);
+            DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, RL_WHITE);
+            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.x, (int)mouse.y), 350, 25, 20, RL_GREEN);
+            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.x, (int)virtualMouse.y), 350, 55, 20, RL_YELLOW);
         EndTextureMode();
         
         BeginDrawing();
-            ClearBackground(BLACK);     // Clear screen background
+            ClearBackground(RL_BLACK);     // Clear screen background
 
             // Draw render texture to screen, properly scaled
             DrawTexturePro(target.texture, (Rectangle){ 0.0f, 0.0f, (float)target.texture.width, (float)-target.texture.height },
                            (Rectangle){ (GetScreenWidth() - ((float)gameScreenWidth*scale))*0.5f, (GetScreenHeight() - ((float)gameScreenHeight*scale))*0.5f,
-                           (float)gameScreenWidth*scale, (float)gameScreenHeight*scale }, (Vector2){ 0, 0 }, 0.0f, WHITE);
+                           (float)gameScreenWidth*scale, (float)gameScreenHeight*scale }, (Vector2){ 0, 0 }, 0.0f, RL_WHITE);
         EndDrawing();
         //--------------------------------------------------------------------------------------
     }

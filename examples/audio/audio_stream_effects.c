@@ -107,19 +107,19 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 245, 150, 20, LIGHTGRAY);
+            DrawText("MUSIC SHOULD BE PLAYING!", 245, 150, 20, RL_LIGHTGRAY);
 
-            DrawRectangle(200, 180, 400, 12, LIGHTGRAY);
-            DrawRectangle(200, 180, (int)(timePlayed*400.0f), 12, MAROON);
-            DrawRectangleLines(200, 180, 400, 12, GRAY);
+            DrawRectangle(200, 180, 400, 12, RL_LIGHTGRAY);
+            DrawRectangle(200, 180, (int)(timePlayed*400.0f), 12, RL_MAROON);
+            DrawRectangleLines(200, 180, 400, 12, RL_GRAY);
 
-            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 230, 20, LIGHTGRAY);
-            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 260, 20, LIGHTGRAY);
+            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 230, 20, RL_LIGHTGRAY);
+            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 260, 20, RL_LIGHTGRAY);
             
-            DrawText(TextFormat("PRESS F TO TOGGLE LPF EFFECT: %s", enableEffectLPF? "ON" : "OFF"), 200, 320, 20, GRAY);
-            DrawText(TextFormat("PRESS D TO TOGGLE DELAY EFFECT: %s", enableEffectDelay? "ON" : "OFF"), 180, 350, 20, GRAY);
+            DrawText(TextFormat("PRESS F TO TOGGLE LPF EFFECT: %s", enableEffectLPF? "ON" : "OFF"), 200, 320, 20, RL_GRAY);
+            DrawText(TextFormat("PRESS D TO TOGGLE DELAY EFFECT: %s", enableEffectDelay? "ON" : "OFF"), 180, 350, 20, RL_GRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

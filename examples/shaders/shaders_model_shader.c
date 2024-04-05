@@ -76,17 +76,17 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
-                DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
+                DrawModel(model, position, 0.2f, RL_WHITE);   // Draw 3d model with texture
 
                 DrawGrid(10, 1.0f);     // Draw a grid
 
             EndMode3D();
 
-            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
+            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, RL_GRAY);
 
             DrawFPS(10, 10);
 

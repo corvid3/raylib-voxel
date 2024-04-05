@@ -76,7 +76,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginShaderMode(shader);
 
@@ -87,11 +87,11 @@ int main(void)
 
                 // We are drawing texRed using default sampler2D texture0 but
                 // an additional texture units is enabled for texBlue (sampler2D texture1)
-                DrawTexture(texRed, 0, 0, WHITE);
+                DrawTexture(texRed, 0, 0, RL_WHITE);
 
             EndShaderMode();
 
-            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RAYWHITE);
+            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RL_RAYWHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

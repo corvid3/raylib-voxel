@@ -150,36 +150,36 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
         
             if (splineTypeActive == SPLINE_LINEAR)
             {
                 // Draw spline: linear
-                DrawSplineLinear(points, pointCount, splineThickness, RED);
+                DrawSplineLinear(points, pointCount, splineThickness, RL_RED);
             }
             else if (splineTypeActive == SPLINE_BASIS)
             {
                 // Draw spline: basis
-                DrawSplineBasis(points, pointCount, splineThickness, RED);  // Provide connected points array
+                DrawSplineBasis(points, pointCount, splineThickness, RL_RED);  // Provide connected points array
 
                 /*
                 for (int i = 0; i < (pointCount - 3); i++)
                 {
                     // Drawing individual segments, not considering thickness connection compensation
-                    DrawSplineSegmentBasis(points[i], points[i + 1], points[i + 2], points[i + 3], splineThickness, MAROON);
+                    DrawSplineSegmentBasis(points[i], points[i + 1], points[i + 2], points[i + 3], splineThickness, RL_MAROON);
                 }
                 */
             }
             else if (splineTypeActive == SPLINE_CATMULLROM)
             {
                 // Draw spline: catmull-rom
-                DrawSplineCatmullRom(points, pointCount, splineThickness, RED); // Provide connected points array
+                DrawSplineCatmullRom(points, pointCount, splineThickness, RL_RED); // Provide connected points array
                 
                 /*
                 for (int i = 0; i < (pointCount - 3); i++)
                 {
                     // Drawing individual segments, not considering thickness connection compensation
-                    DrawSplineSegmentCatmullRom(points[i], points[i + 1], points[i + 2], points[i + 3], splineThickness, MAROON);
+                    DrawSplineSegmentCatmullRom(points[i], points[i + 1], points[i + 2], points[i + 3], splineThickness, RL_MAROON);
                 }
                 */
             }
@@ -189,20 +189,20 @@ int main(void)
                 for (int i = 0; i < pointCount - 1; i++)
                 {
                     // Drawing individual segments, not considering thickness connection compensation
-                    DrawSplineSegmentBezierCubic(points[i], control[i].start, control[i].end, points[i + 1], splineThickness, RED);
+                    DrawSplineSegmentBezierCubic(points[i], control[i].start, control[i].end, points[i + 1], splineThickness, RL_RED);
 
                     // Every cubic bezier point should have two control points
-                    DrawCircleV(control[i].start, 6, GOLD);
-                    DrawCircleV(control[i].end, 6, GOLD);
-                    if (focusedControlPoint == &control[i].start) DrawCircleV(control[i].start, 8, GREEN);
-                    else if (focusedControlPoint == &control[i].end) DrawCircleV(control[i].end, 8, GREEN);
-                    DrawLineEx(points[i], control[i].start, 1.0f, LIGHTGRAY);
-                    DrawLineEx(points[i + 1], control[i].end, 1.0f, LIGHTGRAY);
+                    DrawCircleV(control[i].start, 6, RL_GOLD);
+                    DrawCircleV(control[i].end, 6, RL_GOLD);
+                    if (focusedControlPoint == &control[i].start) DrawCircleV(control[i].start, 8, RL_GREEN);
+                    else if (focusedControlPoint == &control[i].end) DrawCircleV(control[i].end, 8, RL_GREEN);
+                    DrawLineEx(points[i], control[i].start, 1.0f, RL_LIGHTGRAY);
+                    DrawLineEx(points[i + 1], control[i].end, 1.0f, RL_LIGHTGRAY);
                 
                     // Draw spline control lines
-                    DrawLineV(points[i], control[i].start, GRAY);
-                    //DrawLineV(control[i].start, control[i].end, LIGHTGRAY);
-                    DrawLineV(control[i].end, points[i + 1], GRAY);
+                    DrawLineV(points[i], control[i].start, RL_GRAY);
+                    //DrawLineV(control[i].start, control[i].end, RL_LIGHTGRAY);
+                    DrawLineV(control[i].end, points[i + 1], RL_GRAY);
                 }
             }
 
@@ -211,12 +211,12 @@ int main(void)
                 // Draw spline point helpers
                 for (int i = 0; i < pointCount; i++)
                 {
-                    DrawCircleLinesV(points[i], (focusedPoint == i)? 12.0f : 8.0f, (focusedPoint == i)? BLUE: DARKBLUE);
+                    DrawCircleLinesV(points[i], (focusedPoint == i)? 12.0f : 8.0f, (focusedPoint == i)? RL_BLUE: RL_DARKBLUE);
                     if ((splineTypeActive != SPLINE_LINEAR) &&
                         (splineTypeActive != SPLINE_BEZIER) &&
-                        (i < pointCount - 1)) DrawLineV(points[i], points[i + 1], GRAY);
+                        (i < pointCount - 1)) DrawLineV(points[i], points[i + 1], RL_GRAY);
 
-                    DrawText(TextFormat("[%.0f, %.0f]", points[i].x, points[i].y), points[i].x, points[i].y + 10, 10, BLACK);
+                    DrawText(TextFormat("[%.0f, %.0f]", points[i].x, points[i].y), points[i].x, points[i].y + 10, 10, RL_BLACK);
                 }
             }
 

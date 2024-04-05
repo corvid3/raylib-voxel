@@ -42,11 +42,11 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(RL_RAYWHITE);
 
         // TODO: Draw everything that requires to be drawn at this point:
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);  // Example
+        DrawText("Congrats! You created your first window!", 190, 200, 20, RL_LIGHTGRAY);  // Example
 
         EndDrawing();
         //----------------------------------------------------------------------------------

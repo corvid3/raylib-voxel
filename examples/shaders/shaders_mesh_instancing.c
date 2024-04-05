@@ -80,19 +80,19 @@ int main(void)
     SetShaderValue(shader, ambientLoc, (float[4]){ 0.2f, 0.2f, 0.2f, 1.0f }, SHADER_UNIFORM_VEC4);
 
     // Create one light
-    CreateLight(LIGHT_DIRECTIONAL, (Vector3){ 50.0f, 50.0f, 0.0f }, Vector3Zero(), WHITE, shader);
+    CreateLight(LIGHT_DIRECTIONAL, (Vector3){ 50.0f, 50.0f, 0.0f }, Vector3Zero(), RL_WHITE, shader);
 
     // NOTE: We are assigning the intancing shader to material.shader
     // to be used on mesh drawing with DrawMeshInstanced()
     Material matInstances = LoadMaterialDefault();
     matInstances.shader = shader;
-    matInstances.maps[MATERIAL_MAP_DIFFUSE].color = RED;
+    matInstances.maps[MATERIAL_MAP_DIFFUSE].color = RL_RED;
 
     // Load default material (using raylib intenral default shader) for non-instanced mesh drawing
     // WARNING: Default shader enables vertex color attribute BUT GenMeshCube() does not generate vertex colors, so,
     // when drawing the color attribute is disabled and a default color value is provided as input for thevertex attribute
     Material matDefault = LoadMaterialDefault();
-    matDefault.maps[MATERIAL_MAP_DIFFUSE].color = BLUE;
+    matDefault.maps[MATERIAL_MAP_DIFFUSE].color = RL_BLUE;
 
     SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -113,19 +113,19 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             BeginMode3D(camera);
 
-                // Draw cube mesh with default material (BLUE)
+                // Draw cube mesh with default material (RL_BLUE)
                 DrawMesh(cube, matDefault, MatrixTranslate(-10.0f, 0.0f, 0.0f));
 
-                // Draw meshes instanced using material containing instancing shader (RED + lighting),
+                // Draw meshes instanced using material containing instancing shader (RL_RED + lighting),
                 // transforms[] for the instances should be provided, they are dynamically
                 // updated in GPU every frame, so we can animate the different mesh instances
                 DrawMeshInstanced(cube, matInstances, transforms, MAX_INSTANCES);
 
-                // Draw cube mesh with default material (BLUE)
+                // Draw cube mesh with default material (RL_BLUE)
                 DrawMesh(cube, matDefault, MatrixTranslate(10.0f, 0.0f, 0.0f));
 
             EndMode3D();

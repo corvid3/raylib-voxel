@@ -89,17 +89,17 @@ static void UpdateDrawFrame(void)
     //----------------------------------------------------------------------------------
     BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(RL_RAYWHITE);
 
         BeginMode3D(camera);
 
-            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+            DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RL_RED);
+            DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, RL_MAROON);
             DrawGrid(10, 1.0f);
 
         EndMode3D();
 
-        DrawText("This is a raylib example", 10, 40, 20, DARKGRAY);
+        DrawText("This is a raylib example", 10, 40, 20, RL_DARKGRAY);
 
         DrawFPS(10, 10);
 

@@ -157,34 +157,34 @@ int main(void)
         //----------------------------------------------------------------------------------
         // Using a render texture to draw Julia set
         BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(BLACK);     // Clear the render texture
+            ClearBackground(RL_BLACK);     // Clear the render texture
 
             // Draw a rectangle in shader mode to be used as shader canvas
             // NOTE: Rectangle uses font white character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
+            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), RL_BLACK);
         EndTextureMode();
             
         BeginDrawing();
-            ClearBackground(BLACK);     // Clear screen background
+            ClearBackground(RL_BLACK);     // Clear screen background
 
             // Draw the saved texture and rendered julia set with shader
             // NOTE: We do not invert texture on Y, already considered inside shader
             BeginShaderMode(shader);
                 // WARNING: If FLAG_WINDOW_HIGHDPI is enabled, HighDPI monitor scaling should be considered
                 // when rendering the RenderTexture2D to fit in the HighDPI scaled Window
-                DrawTextureEx(target.texture, (Vector2){ 0.0f, 0.0f }, 0.0f, 1.0f, WHITE);
+                DrawTextureEx(target.texture, (Vector2){ 0.0f, 0.0f }, 0.0f, 1.0f, RL_WHITE);
             EndShaderMode();
 
             if (showControls)
             {
-                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, RAYWHITE);
-                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, RAYWHITE);
-                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, RAYWHITE);
-                DrawText("Press KEY_LEFT | KEY_RIGHT to change speed", 10, 60, 10, RAYWHITE);
-                DrawText("Press KEY_SPACE to stop movement animation", 10, 75, 10, RAYWHITE);
-                DrawText("Press KEY_R to recenter the camera", 10, 90, 10, RAYWHITE);
+                DrawText("Press Mouse buttons right/left to zoom in/out and move", 10, 15, 10, RL_RAYWHITE);
+                DrawText("Press KEY_F1 to toggle these controls", 10, 30, 10, RL_RAYWHITE);
+                DrawText("Press KEYS [1 - 6] to change point of interest", 10, 45, 10, RL_RAYWHITE);
+                DrawText("Press KEY_LEFT | KEY_RIGHT to change speed", 10, 60, 10, RL_RAYWHITE);
+                DrawText("Press KEY_SPACE to stop movement animation", 10, 75, 10, RL_RAYWHITE);
+                DrawText("Press KEY_R to recenter the camera", 10, 90, 10, RL_RAYWHITE);
             }
         EndDrawing();
         //----------------------------------------------------------------------------------

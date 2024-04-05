@@ -88,21 +88,21 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
+            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, RL_LIGHTGRAY);
 
-            DrawText(TextFormat("EXPONENT = %.2f", exponent), 215, 180, 20, LIGHTGRAY);
+            DrawText(TextFormat("EXPONENT = %.2f", exponent), 215, 180, 20, RL_LIGHTGRAY);
 
-            DrawRectangle(199, 199, 402, 34, LIGHTGRAY);
+            DrawRectangle(199, 199, 402, 34, RL_LIGHTGRAY);
             for (int i = 0; i < 400; i++)
             {
-                DrawLine(201 + i, 232 - averageVolume[i] * 32, 201 + i, 232, MAROON);
+                DrawLine(201 + i, 232 - averageVolume[i] * 32, 201 + i, 232, RL_MAROON);
             }
-            DrawRectangleLines(199, 199, 402, 34, GRAY);
+            DrawRectangleLines(199, 199, 402, 34, RL_GRAY);
 
-            DrawText("PRESS SPACE TO PLAY OTHER SOUND", 200, 250, 20, LIGHTGRAY);
-            DrawText("USE LEFT AND RIGHT ARROWS TO ALTER DISTORTION", 140, 280, 20, LIGHTGRAY);
+            DrawText("PRESS SPACE TO PLAY OTHER SOUND", 200, 250, 20, RL_LIGHTGRAY);
+            DrawText("USE LEFT AND RIGHT ARROWS TO ALTER DISTORTION", 140, 280, 20, RL_LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

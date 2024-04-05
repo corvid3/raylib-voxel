@@ -88,24 +88,24 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // Draw 3D model (recomended to draw 3D always before 2D)
             BeginMode3D(camera);
 
-                DrawModel(model, (Vector3){ 0.0f, -8.0f, 0.0f }, 1.0f, WHITE);   // Draw 3d model with texture
+                DrawModel(model, (Vector3){ 0.0f, -8.0f, 0.0f }, 1.0f, RL_WHITE);   // Draw 3d model with texture
                 DrawGrid(10, 10.0f);
 
             EndMode3D();
 
             // Draw controls info
-            DrawRectangle(30, 370, 260, 70, Fade(GREEN, 0.5f));
-            DrawRectangleLines(30, 370, 260, 70, Fade(DARKGREEN, 0.5f));
-            DrawText("Pitch controlled with: KEY_UP / KEY_DOWN", 40, 380, 10, DARKGRAY);
-            DrawText("Roll controlled with: KEY_LEFT / KEY_RIGHT", 40, 400, 10, DARKGRAY);
-            DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, DARKGRAY);
+            DrawRectangle(30, 370, 260, 70, Fade(RL_GREEN, 0.5f));
+            DrawRectangleLines(30, 370, 260, 70, Fade(RL_DARKGREEN, 0.5f));
+            DrawText("Pitch controlled with: KEY_UP / KEY_DOWN", 40, 380, 10, RL_DARKGRAY);
+            DrawText("Roll controlled with: KEY_LEFT / KEY_RIGHT", 40, 400, 10, RL_DARKGRAY);
+            DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, RL_DARKGRAY);
 
-            DrawText("(c) WWI Plane Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, DARKGRAY);
+            DrawText("(c) WWI Plane Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, RL_DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

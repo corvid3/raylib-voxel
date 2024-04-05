@@ -108,7 +108,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         // Draw into our custom render texture (framebuffer)
         BeginTextureMode(target);
-            ClearBackground(WHITE);
+            ClearBackground(RL_WHITE);
 
             // Raymarch Scene
             rlEnableDepthTest(); //Manually enable Depth Test to handle multiple rendering methods.
@@ -119,10 +119,10 @@ int main(void)
             // Raserize Scene
             BeginMode3D(camera);
                 BeginShaderMode(shdrRaster);
-                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RED);
-                    DrawCubeV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, PURPLE);
-                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, DARKGREEN);
-                    DrawCubeV((Vector3) { 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, YELLOW);
+                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RL_RED);
+                    DrawCubeV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RL_PURPLE);
+                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RL_DARKGREEN);
+                    DrawCubeV((Vector3) { 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RL_YELLOW);
                     DrawGrid(10, 1.0f);
                 EndShaderMode();
             EndMode3D();
@@ -130,9 +130,9 @@ int main(void)
 
         // Draw into screen our custom render texture 
         BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
         
-            DrawTextureRec(target.texture, (Rectangle) { 0, 0, (float)screenWidth, (float)-screenHeight }, (Vector2) { 0, 0 }, WHITE);
+            DrawTextureRec(target.texture, (Rectangle) { 0, 0, (float)screenWidth, (float)-screenHeight }, (Vector2) { 0, 0 }, RL_WHITE);
             DrawFPS(10, 10);
         EndDrawing();
         //----------------------------------------------------------------------------------

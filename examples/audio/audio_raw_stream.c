@@ -181,10 +181,10 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("sine frequency: %i",(int)frequency), GetScreenWidth() - 220, 10, 20, RED);
-            DrawText("click mouse button to change frequency or pan", 10, 10, 20, DARKGRAY);
+            DrawText(TextFormat("sine frequency: %i",(int)frequency), GetScreenWidth() - 220, 10, 20, RL_RED);
+            DrawText("click mouse button to change frequency or pan", 10, 10, 20, RL_DARKGRAY);
 
             // Draw the current buffer state proportionate to the screen
             for (int i = 0; i < screenWidth; i++)
@@ -192,7 +192,7 @@ int main(void)
                 position.x = (float)i;
                 position.y = 250 + 50*data[i*MAX_SAMPLES/screenWidth]/32000.0f;
 
-                DrawPixelV(position, RED);
+                DrawPixelV(position, RL_RED);
             }
 
         EndDrawing();

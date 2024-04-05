@@ -138,7 +138,7 @@ int main()
     car.materials[0].shader = shader;
 
     // Setup materials[0].maps default parameters
-    car.materials[0].maps[MATERIAL_MAP_ALBEDO].color = WHITE;
+    car.materials[0].maps[MATERIAL_MAP_ALBEDO].color = RL_WHITE;
     car.materials[0].maps[MATERIAL_MAP_METALNESS].value = 0.0f;
     car.materials[0].maps[MATERIAL_MAP_ROUGHNESS].value = 0.0f;
     car.materials[0].maps[MATERIAL_MAP_OCCLUSION].value = 1.0f;
@@ -160,11 +160,11 @@ int main()
     // Assign material shader for our floor model, same PBR shader 
     floor.materials[0].shader = shader;
     
-    floor.materials[0].maps[MATERIAL_MAP_ALBEDO].color = WHITE;
+    floor.materials[0].maps[MATERIAL_MAP_ALBEDO].color = RL_WHITE;
     floor.materials[0].maps[MATERIAL_MAP_METALNESS].value = 0.0f;
     floor.materials[0].maps[MATERIAL_MAP_ROUGHNESS].value = 0.0f;
     floor.materials[0].maps[MATERIAL_MAP_OCCLUSION].value = 1.0f;
-    floor.materials[0].maps[MATERIAL_MAP_EMISSION].color = BLACK;
+    floor.materials[0].maps[MATERIAL_MAP_EMISSION].color = RL_BLACK;
 
     floor.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = LoadTexture("resources/road_a.png");
     floor.materials[0].maps[MATERIAL_MAP_METALNESS].texture = LoadTexture("resources/road_mra.png");
@@ -177,10 +177,10 @@ int main()
 
     // Create some lights
     Light lights[MAX_LIGHTS] = { 0 };
-    lights[0] = CreateLight(LIGHT_POINT, (Vector3){ -1.0f, 1.0f, -2.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, YELLOW, 4.0f, shader);
-    lights[1] = CreateLight(LIGHT_POINT, (Vector3){ 2.0f, 1.0f, 1.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, GREEN, 3.3f, shader);
-    lights[2] = CreateLight(LIGHT_POINT, (Vector3){ -2.0f, 1.0f, 1.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, RED, 8.3f, shader);
-    lights[3] = CreateLight(LIGHT_POINT, (Vector3){ 1.0f, 1.0f, -2.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, BLUE, 2.0f, shader);
+    lights[0] = CreateLight(LIGHT_POINT, (Vector3){ -1.0f, 1.0f, -2.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, RL_YELLOW, 4.0f, shader);
+    lights[1] = CreateLight(LIGHT_POINT, (Vector3){ 2.0f, 1.0f, 1.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, RL_GREEN, 3.3f, shader);
+    lights[2] = CreateLight(LIGHT_POINT, (Vector3){ -2.0f, 1.0f, 1.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, RL_RED, 8.3f, shader);
+    lights[3] = CreateLight(LIGHT_POINT, (Vector3){ 1.0f, 1.0f, -2.0f }, (Vector3){ 0.0f, 0.0f, 0.0f }, RL_BLUE, 2.0f, shader);
 
     // Setup material texture maps usage in shader
     // NOTE: By default, the texture maps are always used
@@ -218,7 +218,7 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
         
-            ClearBackground(BLACK);
+            ClearBackground(RL_BLACK);
             
             BeginMode3D(camera);
                 
@@ -227,7 +227,7 @@ int main()
                 Vector4 floorEmissiveColor = ColorNormalize(floor.materials[0].maps[MATERIAL_MAP_EMISSION].color);
                 SetShaderValue(shader, emissiveColorLoc, &floorEmissiveColor, SHADER_UNIFORM_VEC4);
                 
-                DrawModel(floor, (Vector3){ 0.0f, 0.0f, 0.0f }, 5.0f, WHITE);   // Draw floor model
+                DrawModel(floor, (Vector3){ 0.0f, 0.0f, 0.0f }, 5.0f, RL_WHITE);   // Draw floor model
 
                 // Set old car model texture tiling, emissive color and emissive intensity parameters on shader
                 SetShaderValue(shader, textureTilingLoc, &carTextureTiling, SHADER_UNIFORM_VEC2);
@@ -236,7 +236,7 @@ int main()
                 float emissiveIntensity = 0.01f;
                 SetShaderValue(shader, emissiveIntensityLoc, &emissiveIntensity, SHADER_UNIFORM_FLOAT);
                 
-                DrawModel(car, (Vector3){ 0.0f, 0.0f, 0.0f }, 0.005f, WHITE);   // Draw car model
+                DrawModel(car, (Vector3){ 0.0f, 0.0f, 0.0f }, 0.005f, RL_WHITE);   // Draw car model
 
                 // Draw spheres to show the lights positions
                 for (int i = 0; i < MAX_LIGHTS; i++)
@@ -249,9 +249,9 @@ int main()
                 
             EndMode3D();
             
-            DrawText("Toggle lights: [1][2][3][4]", 10, 40, 20, LIGHTGRAY);
+            DrawText("Toggle lights: [1][2][3][4]", 10, 40, 20, RL_LIGHTGRAY);
 
-            DrawText("(c) Old Rusty Car model by Renafox (https://skfb.ly/LxRy)", screenWidth - 320, screenHeight - 20, 10, LIGHTGRAY);
+            DrawText("(c) Old Rusty Car model by Renafox (https://skfb.ly/LxRy)", screenWidth - 320, screenHeight - 20, 10, RL_LIGHTGRAY);
             
             DrawFPS(10, 10);
 

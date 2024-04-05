@@ -54,7 +54,7 @@ int main(void)
                                      TextFormat("resources/shaders/glsl%i/shadowmap.fs", GLSL_VERSION));
     shadowShader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shadowShader, "viewPos");
     Vector3 lightDir = Vector3Normalize((Vector3){ 0.35f, -1.0f, -0.35f });
-    Color lightColor = WHITE;
+    Color lightColor = RL_WHITE;
     Vector4 lightColorNormalized = ColorNormalize(lightColor);
     int lightDirLoc = GetShaderLocation(shadowShader, "lightDir");
     int lightColLoc = GetShaderLocation(shadowShader, "lightColor");
@@ -146,7 +146,7 @@ int main(void)
         Matrix lightView;
         Matrix lightProj;
         BeginTextureMode(shadowMap);
-        ClearBackground(WHITE);
+        ClearBackground(RL_WHITE);
         BeginMode3D(lightCam);
             lightView = rlGetMatrixModelview();
             lightProj = rlGetMatrixProjection();
@@ -155,7 +155,7 @@ int main(void)
         EndTextureMode();
         Matrix lightViewProj = MatrixMultiply(lightView, lightProj);
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(RL_RAYWHITE);
 
         SetShaderValueMatrix(shadowShader, lightVPLoc, lightViewProj);
 
@@ -172,8 +172,8 @@ int main(void)
         
         EndMode3D();
 
-        DrawText("Shadows in raylib using the shadowmapping algorithm!", screenWidth - 320, screenHeight - 20, 10, GRAY);
-        DrawText("Use the arrow keys to rotate the light!", 10, 10, 30, RED);
+        DrawText("Shadows in raylib using the shadowmapping algorithm!", screenWidth - 320, screenHeight - 20, 10, RL_GRAY);
+        DrawText("Use the arrow keys to rotate the light!", 10, 10, 30, RL_RED);
 
         EndDrawing();
 
@@ -245,7 +245,7 @@ void UnloadShadowmapRenderTexture(RenderTexture2D target)
 
 void DrawScene(Model cube, Model robot)
 {
-    DrawModelEx(cube, Vector3Zero(), (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, (Vector3) { 10.0f, 1.0f, 10.0f }, BLUE);
-    DrawModelEx(cube, (Vector3) { 1.5f, 1.0f, -1.5f }, (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, Vector3One(), WHITE);
-    DrawModelEx(robot, (Vector3) { 0.0f, 0.5f, 0.0f }, (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, (Vector3) { 1.0f, 1.0f, 1.0f }, RED);
+    DrawModelEx(cube, Vector3Zero(), (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, (Vector3) { 10.0f, 1.0f, 10.0f }, RL_BLUE);
+    DrawModelEx(cube, (Vector3) { 1.5f, 1.0f, -1.5f }, (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, Vector3One(), RL_WHITE);
+    DrawModelEx(robot, (Vector3) { 0.0f, 0.5f, 0.0f }, (Vector3) { 0.0f, 1.0f, 0.0f }, 0.0f, (Vector3) { 1.0f, 1.0f, 1.0f }, RL_RED);
 }

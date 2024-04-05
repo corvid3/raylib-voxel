@@ -7,7 +7,7 @@
 *     - Characters must be ordered starting with character 32 (Space)
 *     - Every character must be contained within the same Rectangle height
 *     - Every character and every line must be separated by the same distance (margin/padding)
-*     - Rectangles must be defined by a MAGENTA color background
+*     - Rectangles must be defined by a RL_MAGENTA color background
 *
 *   Following those constraints, a font can be provided just by an image,
 *   this is quite handy to avoid additional font descriptor files (like BMFonts use).
@@ -68,11 +68,11 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
-            DrawTextEx(font1, msg1, fontPosition1, (float)font1.baseSize, -3, WHITE);
-            DrawTextEx(font2, msg2, fontPosition2, (float)font2.baseSize, -2, WHITE);
-            DrawTextEx(font3, msg3, fontPosition3, (float)font3.baseSize, 2, WHITE);
+            DrawTextEx(font1, msg1, fontPosition1, (float)font1.baseSize, -3, RL_WHITE);
+            DrawTextEx(font2, msg2, fontPosition2, (float)font2.baseSize, -2, RL_WHITE);
+            DrawTextEx(font3, msg3, fontPosition3, (float)font3.baseSize, 2, RL_WHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -47,7 +47,7 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
     const float maxHeight = screenHeight - 160.0f;
 
     Vector2 lastMouse = { 0.0f, 0.0f }; // Stores last mouse coordinates
-    Color borderColor = MAROON;         // Container border color
+    Color borderColor = RL_MAROON;         // Container border color
     Font font = GetFontDefault();       // Get default system font
 
     SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
@@ -63,8 +63,8 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
         Vector2 mouse = GetMousePosition();
 
         // Check if the mouse is inside the container and toggle border color
-        if (CheckCollisionPointRec(mouse, container)) borderColor = Fade(MAROON, 0.4f);
-        else if (!resizing) borderColor = MAROON;
+        if (CheckCollisionPointRec(mouse, container)) borderColor = Fade(RL_MAROON, 0.4f);
+        else if (!resizing) borderColor = RL_MAROON;
 
         // Container resizing logic
         if (resizing)
@@ -94,26 +94,26 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             DrawRectangleLinesEx(container, 3, borderColor);    // Draw container border
 
             // Draw text in container (add some padding)
-            DrawTextBoxed(font, text, (Rectangle){ container.x + 4, container.y + 4, container.width - 4, container.height - 4 }, 20.0f, 2.0f, wordWrap, GRAY);
+            DrawTextBoxed(font, text, (Rectangle){ container.x + 4, container.y + 4, container.width - 4, container.height - 4 }, 20.0f, 2.0f, wordWrap, RL_GRAY);
 
             DrawRectangleRec(resizer, borderColor);             // Draw the resize box
 
             // Draw bottom info
-            DrawRectangle(0, screenHeight - 54, screenWidth, 54, GRAY);
-            DrawRectangleRec((Rectangle){ 382.0f, screenHeight - 34.0f, 12.0f, 12.0f }, MAROON);
+            DrawRectangle(0, screenHeight - 54, screenWidth, 54, RL_GRAY);
+            DrawRectangleRec((Rectangle){ 382.0f, screenHeight - 34.0f, 12.0f, 12.0f }, RL_MAROON);
 
-            DrawText("Word Wrap: ", 313, screenHeight-115, 20, BLACK);
-            if (wordWrap) DrawText("ON", 447, screenHeight - 115, 20, RED);
-            else DrawText("OFF", 447, screenHeight - 115, 20, BLACK);
+            DrawText("Word Wrap: ", 313, screenHeight-115, 20, RL_BLACK);
+            if (wordWrap) DrawText("ON", 447, screenHeight - 115, 20, RL_RED);
+            else DrawText("OFF", 447, screenHeight - 115, 20, RL_BLACK);
 
-            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, GRAY);
+            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, RL_GRAY);
 
-            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, RAYWHITE);
+            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, RL_RAYWHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
 // Draw text using font inside rectangle limits
 static void DrawTextBoxed(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
 {
-    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, WHITE, WHITE);
+    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, RL_WHITE, RL_WHITE);
 }
 
 // Draw text using font inside rectangle limits with support for text selection

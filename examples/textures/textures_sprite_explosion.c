@@ -102,10 +102,10 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             // Draw explosion required frame rectangle
-            if (active) DrawTextureRec(explosion, frameRec, position, WHITE);
+            if (active) DrawTextureRec(explosion, frameRec, position, RL_WHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -55,14 +55,14 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(RL_RAYWHITE);
 
             if (exitWindowRequested)
             {
-                DrawRectangle(0, 100, screenWidth, 200, BLACK);
-                DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30, WHITE);
+                DrawRectangle(0, 100, screenWidth, 200, RL_BLACK);
+                DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30, RL_WHITE);
             }
-            else DrawText("Try to close the window to get confirmation message!", 120, 200, 20, LIGHTGRAY);
+            else DrawText("Try to close the window to get confirmation message!", 120, 200, 20, RL_LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
